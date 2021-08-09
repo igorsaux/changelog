@@ -9,6 +9,13 @@ body {
   background-color: #22272E;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
 @font-face {
   font-family: 'Radiance';
   src: url( 'https://steamcdn-a.akamaihd.net/apps/underlords/fonts/Radiance-Regular.woff') format('woff');
