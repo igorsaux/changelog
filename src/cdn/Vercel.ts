@@ -1,4 +1,4 @@
-import { GitHubCDN } from '../utils/GitHubCdn'
+import { GitHubCDN } from '../abstractions/GitHubCdn'
 
 /**
  * Представляет Vercel CDN.

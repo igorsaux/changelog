@@ -23,9 +23,4 @@ export abstract class GitHubRepository {
   public getUrl () {
     return `https://github.com/${this.owner}/${this.name}`
   }
-
-  /**
-   * Возвращает путь до чейнджлог файла (без / в конце).
-   */
-  public abstract getChangelogFilePath(): string
 }

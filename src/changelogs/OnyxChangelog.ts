@@ -1,4 +1,4 @@
-export interface ChangeEntry {
+export interface OnyxChangeEntry {
   /**
    * Префикс изменения.
    */
@@ -26,7 +26,7 @@ export interface ChangeEntry {
   pr?: number
 }
 
-export interface ChangelogEntry {
+export interface OnyxChangelogEntry {
   /**
    * Имя автора.
    */
@@ -38,5 +38,5 @@ export interface ChangelogEntry {
   /**
    * Описание изменении.
    */
-  changes?: ChangeEntry[]
+  changes?: OnyxChangeEntry[]
 }
