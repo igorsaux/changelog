@@ -27,5 +27,5 @@ export abstract class GitHubRepository {
   /**
    * Возвращает путь до чейнджлог файла (без / в конце).
    */
-  public abstract getChangelogFileUrl(): string
+  public abstract getChangelogFilePath(): string
 }

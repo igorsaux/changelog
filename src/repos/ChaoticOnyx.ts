@@ -8,7 +8,7 @@ export class ChaoticOnyx extends GitHubRepository {
     super('ChaoticOnyx', 'OnyxBay')
   }
 
-  public getChangelogFileUrl () {
+  public getChangelogFilePath () {
     return '/html/changelogs/.all_changelog.json'
   }
 }
