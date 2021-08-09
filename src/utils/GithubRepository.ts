@@ -1,7 +1,7 @@
 /**
- * Класс для работы с GitHub репозитоием.
+ * Класс представляющий репозитории GitHub.
  */
-export class GitHubRepository {
+export abstract class GitHubRepository {
   /**
    * Название репозитория.
    */
@@ -18,9 +18,14 @@ export class GitHubRepository {
   }
 
   /**
-   * @returns Ссылка на GitHub репозитории.
+   * Получение ссылки на GitHub репозитории.
    */
   public getUrl () {
     return `https://github.com/${this.owner}/${this.name}`
   }
+
+  /**
+   * Возвращает путь до чейнджлог файла (без / в конце).
+   */
+  public abstract getChangelogFileUrl(): string
 }
