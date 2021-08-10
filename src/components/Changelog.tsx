@@ -1,25 +1,59 @@
-import React from 'react'
-import { OnyxHeader } from './OnyxHeader'
-import { Spinner } from './Spinner'
+import React, { ReactNode } from 'react'
 import '../styles/Changelog.scss'
-import { GitHubRepository } from '../abstractions/GitHubRepository'
 
 /**
- * Пропсы для {@link Changelog}
+ * Пропсы для {@link Changelog}.
  */
 export interface ChangelogProps {
   /**
-   * Github репозиторий из которого будет получен чейнджлог.
+   * Тема чейнджлога, подставляется с префиксом theme-.
    */
-  repository: GitHubRepository
+  theme?: string
+
+  children: ReactNode
 }
 
 /**
- * Чейнджлог
+ * Основной компонент чейнджлога.
  */
 export const Changelog = (props: ChangelogProps) => {
-  return <div className='Changelog'>
-    <OnyxHeader />
-    <Spinner text='Загрузка чейнджлогов' />
+  return <div className={`Changelog ${props.theme ? `theme-${props.theme}` : ''}`}>
+    {props.children}
   </div>
 }
+
+/**
+ * Пропсы для {@link Changelog.Body}.
+ */
+export interface BodyProps {
+  children: ReactNode
+}
+
+const Body = (props: BodyProps) => {
+  return <div className='Changelog__body'>
+    {props.children}
+  </div>
+}
+
+/**
+ * Шапка чейнджлога.
+ */
+Changelog.Body = Body
+
+/**
+ * Пропсы для {@link Changelog.Header}
+ */
+ interface HeaderProps {
+  children: ReactNode
+}
+
+const Header = (props: HeaderProps) => {
+  return <div className='Changelog__header'>
+    {props.children}
+  </div>
+}
+
+/**
+ * Шапка чейнджлога.
+ */
+Changelog.Header = Header

@@ -1,3 +1,4 @@
+import React from 'react'
 import { GitHubRepository } from './GitHubRepository'
 
 /**
@@ -18,4 +19,9 @@ export abstract class GameServer {
     this.repository = repository
     this.changelogFilePath = changelogFilePath
   }
+
+  /**
+   * Changelog компонент.
+   */
+  public abstract Changelog(): React.ReactElement
 }

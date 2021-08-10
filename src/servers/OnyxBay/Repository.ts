@@ -1,9 +1,9 @@
-import { GitHubRepository } from '../abstractions/GitHubRepository'
+import { GitHubRepository } from '../../abstractions/GitHubRepository'
 
 /**
  * Класс, представляющий репозитории OnyxBay
  */
-export class OnyxBayRepository extends GitHubRepository {
+export class Repository extends GitHubRepository {
   constructor () {
     super('ChaoticOnyx', 'OnyxBay')
   }

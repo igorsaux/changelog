@@ -1,3 +1,4 @@
+
 .Changelog {
   display: flex;
   flex-direction: column;
@@ -8,6 +9,9 @@
 
   > * {
     margin: auto;
+  }
+
+  &__header {
     margin-top: 0;
   }
 }

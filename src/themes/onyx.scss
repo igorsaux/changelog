@@ -1,0 +1,43 @@
+.theme-onyx {
+  .Changelog {
+    &__header {
+      margin-bottom: 0;
+
+      h2 {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+
+      p {
+        text-align: left;
+        text-indent: 1.5rem;
+        font-size: 1.2rem;
+      }
+
+      .Links {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+
+        a {
+          $link-color: white;
+
+          margin-left: 1rem;
+          margin-right: 1rem;
+          color: $link-color;
+          font-size: 3rem;
+          text-decoration: none;
+
+          &:hover {
+            color: darken($color: $link-color, $amount: 15);
+          }
+        }
+      }
+    }
+
+    &__body {
+      margin-top: 0;
+    }
+  }
+}

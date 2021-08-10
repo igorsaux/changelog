@@ -1,10 +1,10 @@
 import React from 'react'
-import { Changelog } from './components/Changelog'
+import * as OnyxBay from './servers/OnyxBay'
 
 function App () {
-  return (
-    <Changelog />
-  )
+  const server = new OnyxBay.Server()
+
+  return <server.Changelog />
 }
 
 export default App
