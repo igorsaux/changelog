@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Repository } from './Repository'
 import { GameServer } from '../../abstractions/GameServer'
-import { Changelog } from '../../components/Changelog'
-import { ChangelogEntry } from '.'
+import { ChangelogLayout } from '../../components/Changelog'
+import { Changelog, ChangelogEntry } from '.'
 import { Spinner } from '../../components/Spinner'
 import { GitHubCDN } from '../../abstractions/GitHubCdn'
 import mockData from '../../mock/MockData.json'
@@ -59,7 +59,7 @@ interface BodyProps {
 const Body = (props: BodyProps) => {
   return <>
     {props.changelog.map((entry, index) => {
-      return <div className='ChangelogEntry' key={index}>{entry.date}</div>
+      return <Changelog key={index} {...entry} />
     })}
   </>
 }
@@ -97,13 +97,13 @@ export class Server extends GameServer {
       LoadChangelogMock(setChangelog)
     }, [])
 
-    return <Changelog theme='onyx'>
-      <Changelog.Header>
+    return <ChangelogLayout theme='onyx'>
+      <ChangelogLayout.Header>
         <Header />
-      </Changelog.Header>
-      <Changelog.Body>
+      </ChangelogLayout.Header>
+      <ChangelogLayout.Body>
         {changelog.loaded ? <Body changelog={changelog.changelog!} /> : <Spinner text='Загрузка чейнджлогов' />}
-      </Changelog.Body>
-    </Changelog>
+      </ChangelogLayout.Body>
+    </ChangelogLayout>
   }
 }

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import '../styles/Changelog.scss'
 
 /**
- * Пропсы для {@link Changelog}.
+ * Пропсы для {@link ChangelogLayout}.
  */
 export interface ChangelogProps {
   /**
@@ -16,21 +16,21 @@ export interface ChangelogProps {
 /**
  * Основной компонент чейнджлога.
  */
-export const Changelog = (props: ChangelogProps) => {
-  return <div className={`Changelog ${props.theme ? `theme-${props.theme}` : ''}`}>
+export const ChangelogLayout = (props: ChangelogProps) => {
+  return <div className={`ChangelogLayout ${props.theme ? `theme-${props.theme}` : ''}`}>
     {props.children}
   </div>
 }
 
 /**
- * Пропсы для {@link Changelog.Body}.
+ * Пропсы для {@link ChangelogLayout.Body}.
  */
 export interface BodyProps {
   children: ReactNode
 }
 
 const Body = (props: BodyProps) => {
-  return <div className='Changelog__body'>
+  return <div className='ChangelogLayout__body'>
     {props.children}
   </div>
 }
@@ -38,17 +38,17 @@ const Body = (props: BodyProps) => {
 /**
  * Шапка чейнджлога.
  */
-Changelog.Body = Body
+ChangelogLayout.Body = Body
 
 /**
- * Пропсы для {@link Changelog.Header}
+ * Пропсы для {@link ChangelogLayout.Header}
  */
  interface HeaderProps {
   children: ReactNode
 }
 
 const Header = (props: HeaderProps) => {
-  return <div className='Changelog__header'>
+  return <div className='ChangelogLayout__header'>
     {props.children}
   </div>
 }
@@ -56,4 +56,4 @@ const Header = (props: HeaderProps) => {
 /**
  * Шапка чейнджлога.
  */
-Changelog.Header = Header
+ChangelogLayout.Header = Header

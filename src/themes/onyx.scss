@@ -1,5 +1,5 @@
 .theme-onyx {
-  .Changelog {
+  .ChangelogLayout {
     &__header {
       margin-bottom: 0;
 
@@ -38,6 +38,86 @@
 
     &__body {
       margin-top: 0;
+      width: 100%;
+    }
+  }
+
+  .Changelog {
+    &__date {
+      margin: 10px 0;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 0.2rem solid #6b89da;
+      width: 100%;
+      padding: 0;
+      outline: 0;
+      height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        background-color: #6b89da;
+        border-radius: 2rem;
+        font-weight: 600;
+        margin-top: 0.2rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+
+    &__author {
+      margin: 0;
+      padding-left: 0.5rem;
+      font-style: italic;
+    }
+
+    .Changes {
+      list-style: none;
+      margin: 5px 0;
+      padding: 0 0 0 25px;
+      font-size: 0.9em;
+
+      &__change {
+        padding: 0.2rem 0 0.2rem 0.5rem;
+        border-left: 0.2rem solid #999;
+        margin-bottom: 0.4rem;
+      }
+
+      .green {
+        border-left-color: #57ab5a;
+        background: linear-gradient(90deg, rgba(87, 171, 90, 0.2) 0%, rgba(71, 139, 73, 0) 100%);
+      }
+
+      .red {
+        border-left-color: #e5534b;
+        background: linear-gradient(90deg, rgba(229, 83, 75, 0.2) 0%, rgba(158, 57, 52, 0) 100%);
+      }
+
+      .yellow {
+        border-left-color: #daaa3f;
+        background: rgba(218, 170, 63, 0.2)
+          linear-gradient(90deg, rgba(218, 170, 63, 0.2) 0%, rgba(150, 117, 44, 0) 100%);
+      }
+
+      i {
+        margin-right: 1ch;
+      }
+    }
+  }
+
+  .PR {
+    &__link {
+      font-family: Helvetica, Arial, sans-serif;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.7rem;
+      border-bottom: none;
+      margin-left: 0;
+      font-style: italic;
+      text-decoration: none;
     }
   }
 }

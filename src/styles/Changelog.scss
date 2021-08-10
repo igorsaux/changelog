@@ -1,11 +1,12 @@
 
-.Changelog {
+.ChangelogLayout {
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  width: 100%;
 
   > * {
     margin: auto;
@@ -13,6 +14,9 @@
 
   &__header {
     margin-top: 0;
+    padding-top: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   .Spinner {

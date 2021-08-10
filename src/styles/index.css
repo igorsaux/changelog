@@ -11,12 +11,6 @@ html, body {
   padding: 0;
 }
 
-#root {
-  padding-top: 0.5rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
 @font-face {
   font-family: 'Radiance';
   src: url( 'https://steamcdn-a.akamaihd.net/apps/underlords/fonts/Radiance-Regular.woff') format('woff');
