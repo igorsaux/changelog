@@ -1,19 +1,20 @@
 body {
-  margin: 0;
   font-family: 'Radiance', sans-serif;
-  padding-top: 0.5rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
 
   color: white;
   background-color: #22272E;
 }
 
-html,
-body,
-#root {
+html, body {
   height: 100%;
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  padding-top: 0.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 @font-face {

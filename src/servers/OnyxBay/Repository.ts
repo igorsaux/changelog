@@ -5,6 +5,6 @@ import { GitHubRepository } from '../../abstractions/GitHubRepository'
  */
 export class Repository extends GitHubRepository {
   constructor () {
-    super('ChaoticOnyx', 'OnyxBay')
+    super('OnyxBay', 'ChaoticOnyx')
   }
 }

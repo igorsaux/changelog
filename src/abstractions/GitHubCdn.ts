@@ -20,7 +20,7 @@ export abstract class GitHubCDN {
   public async fetch (url: string) {
     return await fetch(url, {
       method: 'GET',
-      mode: 'no-cors'
+      mode: 'cors'
     })
   }
 
@@ -30,7 +30,7 @@ export abstract class GitHubCDN {
    * @param filePath Путь до данных (без / в конце).
    */
   public async fetchFile (repository: GitHubRepository, filePath: string) {
-    return await this.fetch(this.join(repository, filePath))
+    return await this.fetch(`${this.cdn}/${this.join(repository, filePath)}`)
   }
 
   /**
@@ -40,6 +40,6 @@ export abstract class GitHubCDN {
    * @example join({ name: 'OnyxBay', owner: 'ChaoticOnyx' }, '/html/changelog.html') => '/ChaoticOnyx/OnyxBay/html/changelog.html'
    */
   public join (repository: GitHubRepository, filePath: string) {
-    return `${repository.owner}/${repository.name}${filePath}`
+    return `${repository.owner}/${repository.name}/dev${filePath}`
   }
 }

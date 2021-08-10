@@ -1,10 +1,12 @@
-import React from 'react'
+
+import { Vercel } from './cdn/Vercel'
 import * as OnyxBay from './servers/OnyxBay'
 
 function App () {
-  const server = new OnyxBay.Server()
+  const cdn = new Vercel()
+  const server = new OnyxBay.Server(cdn)
 
-  return <server.Changelog />
+  return server.Changelog()
 }
 
 export default App

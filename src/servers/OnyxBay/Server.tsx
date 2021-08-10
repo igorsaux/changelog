@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Repository } from './Repository'
 import { GameServer } from '../../abstractions/GameServer'
 import { Changelog } from '../../components/Changelog'
+import { ChangelogEntry } from '.'
+import { Spinner } from '../../components/Spinner'
+import { GitHubCDN } from '../../abstractions/GitHubCdn'
+import mockData from '../../mock/MockData.json'
 
 interface Link {
   title: string
@@ -48,27 +52,57 @@ const Header = () => {
   </>
 }
 
-const Body = () => {
+interface BodyProps {
+  changelog: ChangelogEntry[]
+}
+
+const Body = (props: BodyProps) => {
   return <>
-    Hello!
+    {props.changelog.map((entry, index) => {
+      return <div className='ChangelogEntry' key={index}>{entry.date}</div>
+    })}
   </>
+}
+
+const LoadChangelogMock = (setChangelog: Dispatch<SetStateAction<ChangelogState>>) => {
+  setChangelog({
+    loaded: true,
+    changelog: mockData
+  })
+}
+
+interface ChangelogState {
+  loaded: boolean
+  changelog?: ChangelogEntry[]
 }
 
 /**
  * OnyxBay сервер.
  */
 export class Server extends GameServer {
-  constructor () {
+  private cdn: GitHubCDN
+
+  constructor (cdn: GitHubCDN) {
     super(new Repository(), '/html/changelogs/.all_changelog.json')
+
+    this.cdn = cdn
   }
 
   public Changelog () {
+    const [changelog, setChangelog] = useState<ChangelogState>({
+      loaded: false
+    })
+
+    useEffect(() => {
+      LoadChangelogMock(setChangelog)
+    }, [])
+
     return <Changelog theme='onyx'>
       <Changelog.Header>
-        {Header()}
+        <Header />
       </Changelog.Header>
       <Changelog.Body>
-        {Body()}
+        {changelog.loaded ? <Body changelog={changelog.changelog!} /> : <Spinner text='Загрузка чейнджлогов' />}
       </Changelog.Body>
     </Changelog>
   }

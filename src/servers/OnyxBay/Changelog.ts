@@ -3,20 +3,7 @@ export interface ChangeEntry {
   /**
    * Префикс изменения.
    */
-  prefix:
-    | 'BugFix'
-    | 'Balance'
-    | 'Tweak'
-    | 'SoundAdd'
-    | 'SoundDel'
-    | 'RscAdd'
-    | 'RscDel'
-    | 'ImageAdd'
-    | 'ImageDel'
-    | 'MapTweak'
-    | 'SpellCheck'
-    | 'Experiment'
-    | 'Admin'
+  prefix: string
   /**
    * Описание изменения.
    */
