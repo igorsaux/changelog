@@ -1,5 +1,11 @@
 .theme-onyx {
-  .ChangelogLayout {
+  &.ChangelogLayout {
+    font-family: 'Radiance', sans-serif;
+    color: white;
+    background-color: #22272E;
+  }
+
+  .ChangelogLayout {    
     &__header {
       margin-bottom: 0;
 
@@ -43,6 +49,8 @@
   }
 
   .Changelog {
+    animation: slide-in-y 1s ease-out;
+
     &__date {
       margin: 10px 0;
       margin-top: 2rem;
@@ -69,6 +77,18 @@
       }
     }
 
+    @keyframes slide-in-y {
+      from {
+        transform: translateY(100vw);
+        opacity: 0;
+      }
+  
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
     &__author {
       margin: 0;
       padding-left: 0.5rem;
@@ -78,7 +98,7 @@
     .Changes {
       list-style: none;
       margin: 5px 0;
-      padding: 0 0 0 25px;
+      padding: 0 1.5rem 0 1.5rem;
       font-size: 0.9em;
 
       &__change {
@@ -110,6 +130,8 @@
   }
 
   .PR {
+    margin-left: 0.2rem;
+
     &__link {
       font-family: Helvetica, Arial, sans-serif;
       color: rgba(255, 255, 255, 0.5);
@@ -118,6 +140,7 @@
       margin-left: 0;
       font-style: italic;
       text-decoration: none;
+      font-weight: bold;
     }
   }
 }

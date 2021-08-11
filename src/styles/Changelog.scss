@@ -18,22 +18,4 @@
     padding-left: 2rem;
     padding-right: 2rem;
   }
-
-  .Spinner {
-    margin-top: 50%;
-
-    animation: slide-in 1s ease-out;
-  }
-
-  @keyframes slide-in {
-    from {
-      transform: translateX(-50vw);
-      opacity: 0;
-    }
-
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
 }

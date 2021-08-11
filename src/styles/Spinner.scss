@@ -1,5 +1,8 @@
 .Spinner {
+  text-align: center;
   font-size: 1.4rem;
+  margin-top: 25vh;
+  animation: slide-in 1s ease-out;
 
   &__icon {
     animation: spin 1s ease infinite;
@@ -13,6 +16,18 @@
 
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(-50vw);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(0);
+      opacity: 1;
     }
   }
 }
