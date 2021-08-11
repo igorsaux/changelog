@@ -73,8 +73,15 @@ const Body = (props: BodyProps) => {
   </>
 }
 
+interface ErrorProps {
+  message: string
+}
+
+const Error = (props: ErrorProps) => {
+  return <div className='Error'>{props.message}</div>
+}
+
 interface ChangelogState {
-  loaded: boolean
   changelog?: ChangelogEntry[]
 }
 
@@ -92,17 +99,19 @@ export class Server extends GameServer {
 
   public Changelog () {
     return () => {
-      const [changelog, setChangelog] = useState<ChangelogState>({
-        loaded: false
-      })
+      const [error, setError] = useState<string | undefined>(undefined)
+      const [changelog, setChangelog] = useState<ChangelogState>({})
 
       useEffect(() => {
         const loadChangelog = async () => {
-          const data = await this.cdn.fetchJson(this.repository, this.changelogFilePath) as ChangelogEntry[]
-          setChangelog({
-            loaded: true,
-            changelog: data
-          })
+          try {
+            const data = await this.cdn.fetchJson(this.repository, this.changelogFilePath) as ChangelogEntry[]
+            setChangelog({
+              changelog: data
+            })
+          } catch (error) {
+            setError('Проблемы с подключением ⚠️')
+          }
         }
 
         loadChangelog()
@@ -113,7 +122,11 @@ export class Server extends GameServer {
           <Header />
         </ChangelogLayout.Header>
         <ChangelogLayout.Body>
-          {changelog.loaded ? <Body changelog={changelog.changelog!} /> : <Spinner text='Загрузка чейнджлогов' />}
+          {error
+            ? <Error message={error} />
+            : changelog.changelog
+              ? <Body changelog={changelog.changelog!} />
+              : <Spinner text='Загрузка чейнджлогов' />}
         </ChangelogLayout.Body>
       </ChangelogLayout>
     }

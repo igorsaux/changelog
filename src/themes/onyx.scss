@@ -46,7 +46,6 @@
 
     &__body {
       margin-top: 0;
-      width: 100%;
     }
   }
 
@@ -144,5 +143,15 @@
       text-decoration: none;
       font-weight: bold;
     }
+  }
+
+  .Error {
+    margin-top: 25vh;
+    text-align: center;
+    background-color: #ff000031;
+    animation: slide-in 1s ease-out;
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(0.2rem);
   }
 }
