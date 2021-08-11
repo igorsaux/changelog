@@ -1,4 +1,6 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
+import raw from 'rehype-raw'
 import { COLOR_BINDINGS, ICON_BINDINGS } from '.'
 
 export interface ChangeEntry {
@@ -90,7 +92,9 @@ const Change = (props: ChangeProps) => {
 
   return <li className={`Changes__change ${COLOR_BINDINGS[prefix]}`}>
     <i className={ICON_BINDINGS[prefix]} />
-    <span>{props.change.message}</span>
+    <ReactMarkdown rehypePlugins={
+      // @ts-expect-error
+      [raw]} transformLinkUri={null}>{props.change.message}</ReactMarkdown>
     {props.change.pr ? <PrLink pr={props.change.pr} /> : ''}
   </li>
 }
