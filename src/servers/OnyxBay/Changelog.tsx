@@ -29,6 +29,11 @@ export interface ChangelogEntry {
    * Описание изменении.
    */
   changes: ChangeEntry[]
+
+  /**
+   * Нужно ли выводить дату.
+   */
+  renderDate: boolean
 }
 
 /**
@@ -36,7 +41,7 @@ export interface ChangelogEntry {
  */
 export const Changelog = (props: ChangelogEntry) => {
   return <div className='Changelog'>
-    <Changelog.Date date={props.date} />
+    {props.renderDate ? <Changelog.Date date={props.date} /> : ''}
     <Changelog.Author author={props.author} />
     <Changelog.Changes changes={props.changes} />
   </div>

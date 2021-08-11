@@ -13,24 +13,21 @@ export abstract class GitHubCDN {
     this.cdn = cdn
   }
 
-  /**
-   * Получение данных по указанному URL.
-   * @param url URL данных.
-   */
-  public async fetch (url: string) {
-    return await fetch(url, {
+  protected async fetch (url: string): Promise<Response> {
+    return await fetch(`${this.cdn}/${url}`, {
       method: 'GET',
       mode: 'cors'
     })
   }
 
   /**
-   * Получение данных по указанному пути для указанного репозитория.
+   * Получение данных по указанному пути для указанного репозитория в формате JSON.
    * @param repository Репозиторий из которого нужно получить данные.
    * @param filePath Путь до данных (без / в конце).
    */
-  public async fetchFile (repository: GitHubRepository, filePath: string) {
-    return await this.fetch(`${this.cdn}/${this.join(repository, filePath)}`)
+  public async fetchJson (repository: GitHubRepository, filePath: string): Promise<unknown> {
+    const response = await this.fetch(this.join(repository, filePath))
+    return await response.json()
   }
 
   /**
@@ -39,7 +36,7 @@ export abstract class GitHubCDN {
    * @param filePath Путь до данных.
    * @example join({ name: 'OnyxBay', owner: 'ChaoticOnyx' }, '/html/changelog.html') => '/ChaoticOnyx/OnyxBay/html/changelog.html'
    */
-  public join (repository: GitHubRepository, filePath: string) {
+  public join (repository: GitHubRepository, filePath: string): string {
     return `${repository.owner}/${repository.name}/dev${filePath}`
   }
 }

@@ -1,11 +1,10 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Repository } from './Repository'
 import { GameServer } from '../../abstractions/GameServer'
 import { ChangelogLayout } from '../../components/Changelog'
 import { Changelog, ChangelogEntry } from '.'
 import { Spinner } from '../../components/Spinner'
 import { GitHubCDN } from '../../abstractions/GitHubCdn'
-import mockData from '../../mock/MockData.json'
 
 interface Link {
   title: string
@@ -57,18 +56,21 @@ interface BodyProps {
 }
 
 const Body = (props: BodyProps) => {
+  let previousDate: string = ''
+
   return <>
     {props.changelog.map((entry, index) => {
-      return <Changelog key={index} {...entry} />
+      let drawDate = true
+
+      if (previousDate === entry.date) {
+        drawDate = false
+      } else {
+        previousDate = entry.date
+      }
+
+      return <Changelog key={index} {...entry} renderDate={drawDate} />
     })}
   </>
-}
-
-const LoadChangelogMock = (setChangelog: Dispatch<SetStateAction<ChangelogState>>) => {
-  setChangelog({
-    loaded: true,
-    changelog: mockData
-  })
 }
 
 interface ChangelogState {
@@ -89,21 +91,31 @@ export class Server extends GameServer {
   }
 
   public Changelog () {
-    const [changelog, setChangelog] = useState<ChangelogState>({
-      loaded: false
-    })
+    return () => {
+      const [changelog, setChangelog] = useState<ChangelogState>({
+        loaded: false
+      })
 
-    useEffect(() => {
-      LoadChangelogMock(setChangelog)
-    }, [])
+      useEffect(() => {
+        const loadChangelog = async () => {
+          const data = await this.cdn.fetchJson(this.repository, this.changelogFilePath) as ChangelogEntry[]
+          setChangelog({
+            loaded: true,
+            changelog: data
+          })
+        }
 
-    return <ChangelogLayout theme='onyx'>
-      <ChangelogLayout.Header>
-        <Header />
-      </ChangelogLayout.Header>
-      <ChangelogLayout.Body>
-        {changelog.loaded ? <Body changelog={changelog.changelog!} /> : <Spinner text='Загрузка чейнджлогов' />}
-      </ChangelogLayout.Body>
-    </ChangelogLayout>
+        loadChangelog()
+      }, [])
+
+      return <ChangelogLayout theme='onyx'>
+        <ChangelogLayout.Header>
+          <Header />
+        </ChangelogLayout.Header>
+        <ChangelogLayout.Body>
+          {changelog.loaded ? <Body changelog={changelog.changelog!} /> : <Spinner text='Загрузка чейнджлогов' />}
+        </ChangelogLayout.Body>
+      </ChangelogLayout>
+    }
   }
 }

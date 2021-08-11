@@ -1,12 +1,13 @@
-
-import { Vercel } from './cdn/Vercel'
+import React from 'react'
+import * as CDN from './cdn'
 import * as OnyxBay from './servers/OnyxBay'
 
 function App () {
-  const cdn = new Vercel()
+  const cdn = new CDN.Mock()
   const server = new OnyxBay.Server(cdn)
+  const Changelog = server.Changelog()
 
-  return server.Changelog()
+  return <Changelog />
 }
 
 export default App

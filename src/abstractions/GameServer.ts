@@ -21,7 +21,7 @@ export abstract class GameServer {
   }
 
   /**
-   * Changelog компонент.
+   * Возвращает компонент для отрисовки чейнджлога.
    */
-  public abstract Changelog(): React.ReactElement
+  public abstract Changelog(): () => React.ReactElement
 }
