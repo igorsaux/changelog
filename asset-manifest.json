@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/onyx-changelog/static/css/main.e4219dfa.chunk.css",
+    "main.js": "/onyx-changelog/static/js/main.083bdd15.chunk.js",
+    "main.js.map": "/onyx-changelog/static/js/main.083bdd15.chunk.js.map",
+    "runtime-main.js": "/onyx-changelog/static/js/runtime-main.7e5c686a.js",
+    "runtime-main.js.map": "/onyx-changelog/static/js/runtime-main.7e5c686a.js.map",
+    "static/js/2.c61fbc2f.chunk.js": "/onyx-changelog/static/js/2.c61fbc2f.chunk.js",
+    "static/js/2.c61fbc2f.chunk.js.map": "/onyx-changelog/static/js/2.c61fbc2f.chunk.js.map",
+    "static/js/3.88325124.chunk.js": "/onyx-changelog/static/js/3.88325124.chunk.js",
+    "static/js/3.88325124.chunk.js.map": "/onyx-changelog/static/js/3.88325124.chunk.js.map",
+    "index.html": "/onyx-changelog/index.html",
+    "static/css/main.e4219dfa.chunk.css.map": "/onyx-changelog/static/css/main.e4219dfa.chunk.css.map",
+    "static/js/2.c61fbc2f.chunk.js.LICENSE.txt": "/onyx-changelog/static/js/2.c61fbc2f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7e5c686a.js",
+    "static/js/2.c61fbc2f.chunk.js",
+    "static/css/main.e4219dfa.chunk.css",
+    "static/js/main.083bdd15.chunk.js"
+  ]
+}
