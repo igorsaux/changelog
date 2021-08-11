@@ -105,6 +105,26 @@
         padding: 0.2rem 0 0.2rem 0.5rem;
         border-left: 0.2rem solid #999;
         margin-bottom: 0.4rem;
+
+        p {
+          display: inline;
+
+          a {
+            color: #14d0ff;
+            border-bottom: 0.1rem dashed #14d0ff;
+            text-decoration: none;
+
+            &:hover {
+              color: #a2ecff;
+              border-bottom: 0.1rem dashed #a2ecff;
+            }
+
+            &:focus {
+              color: #dda2ff;
+              border-bottom: 0.1rem dashed #dda2ff;
+            }
+          }
+        }        
       }
 
       .green {
