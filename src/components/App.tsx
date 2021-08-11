@@ -1,6 +1,6 @@
 import React from 'react'
-import * as CDN from './cdn'
-import * as OnyxBay from './servers/OnyxBay'
+import * as CDN from '../cdn'
+import * as OnyxBay from '../servers/OnyxBay'
 
 function App () {
   const cdn = new CDN.Mock()
