@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "http://igorsaux.github.io/changelog",
   "dependencies": {
-    "@babel/core": "7.12.3",
+    "@babel/core": "7.13.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@svgr/webpack": "5.5.0",
     "@types/jest": "^26.0.15",
