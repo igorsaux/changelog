@@ -52,3 +52,32 @@ export const COLOR_BINDINGS: {[key in ChangePrefix as string] : string} = {
   rscdel: 'red',
   imagedel: 'red'
 }
+
+interface Link {
+  title: string
+  url: string
+  icon: string
+}
+
+export const LINKS: Link[] = [
+  {
+    title: 'Patreon',
+    url: 'https://www.patreon.com/chaoticonyx',
+    icon: 'fab fa-patreon'
+  },
+  {
+    title: 'Wiki',
+    url: 'https://wiki.ss13.ru',
+    icon: 'fas fa-book'
+  },
+  {
+    title: 'GitHub',
+    url: 'https://github.com/ChaoticOnyx/OnyxBay',
+    icon: 'fab fa-github'
+  },
+  {
+    title: 'Discord',
+    url: 'https://discord.gg/5BRMMFg',
+    icon: 'fab fa-discord'
+  }
+]

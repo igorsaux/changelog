@@ -1,11 +1,15 @@
 import React from 'react'
 import * as CDN from '../cdn'
-import * as OnyxBay from '../servers/OnyxBay'
+import { Servers } from '../servers/OnyxBay'
+
+const SERVERS = [
+  new Servers.ChaoticOnyx(),
+  new Servers.Eos()
+]
 
 function App () {
   const cdn = new CDN.Vercel()
-  const server = new OnyxBay.Server(cdn)
-  const Changelog = server.Changelog()
+  const Changelog = SERVERS[0].Changelog(cdn)
 
   return <Changelog />
 }

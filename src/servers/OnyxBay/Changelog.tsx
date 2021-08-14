@@ -1,7 +1,11 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import raw from 'rehype-raw'
-import { COLOR_BINDINGS, ICON_BINDINGS } from '.'
+import { COLOR_BINDINGS, ICON_BINDINGS, LINKS } from '.'
+import { GameServer } from '../../abstractions/GameServer'
+import { GitHubCDN } from '../../abstractions/GitHubCdn'
+import { ChangelogLayout } from '../../components/Changelog'
+import { Spinner } from '../../components/Spinner'
 
 export interface ChangeEntry {
   /**
@@ -110,3 +114,79 @@ const Changes = (props: ChangesProps) => {
 }
 
 Changelog.Changes = Changes
+
+const Header = (props: { serverName: string }) => {
+  return <>
+    <h2>{`Список изменений сервера ${props.serverName}`}</h2>
+    <p>Разработка ведется при помощи игроков, которые поддерживают сервер своими пожертвованиями!
+      Если вы хотите поддержать нас и принять участие в голосовании за то, какие фичи будут реализованы следующими,
+      то подробную информацию можно найти в новостях на нашем сервере Discord!</p>
+    <div className='Links'>
+      {LINKS.map((link, index) => {
+        return <a key={index} title={link.title} href={link.url}>
+          <i className={link.icon}></i>
+        </a>
+      })}
+    </div>
+  </>
+}
+
+interface BodyProps {
+  changelog: ChangelogEntry[]
+}
+
+const Body = (props: BodyProps) => {
+  let previousDate: string = ''
+
+  return <>
+    {props.changelog.map((entry, index) => {
+      let drawDate = true
+
+      if (previousDate === entry.date) {
+        drawDate = false
+      } else {
+        previousDate = entry.date
+      }
+
+      return <Changelog key={index} {...entry} renderDate={drawDate} />
+    })}
+  </>
+}
+
+interface ErrorProps {
+  message: string
+}
+
+const Error = (props: ErrorProps) => {
+  return <div className='Error'>{props.message}</div>
+}
+
+/**
+ * Пропсы для {@link OnyxBayChangelogLayout}
+ */
+ interface OnyxBayChangelogLayoutProps {
+  error?: string,
+  changelog: ChangelogEntry[],
+  serverName: string
+}
+
+export const OnyxBayChangelogLayout = (props: OnyxBayChangelogLayoutProps) => {
+  return <ChangelogLayout theme='onyx'>
+  <ChangelogLayout.Header>
+    <Header serverName={props.serverName} />
+  </ChangelogLayout.Header>
+  <ChangelogLayout.Body>
+    {props.error
+      ? <Error message={props.error} />
+      : props.changelog.length
+        ? <Body changelog={props.changelog} />
+        : <Spinner text='Загрузка чейнджлогов' />}
+  </ChangelogLayout.Body>
+</ChangelogLayout>
+}
+
+export const loadChangelog = (cdn: GitHubCDN, server: GameServer, onError: (reason: string) => void, onSuccessful: (data: unknown) => void) => {
+  server.LoadChangelogAsync(cdn)
+    .catch(reason => onError(reason))
+    .then(data => onSuccessful(data))
+}

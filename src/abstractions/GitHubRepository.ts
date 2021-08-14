@@ -12,9 +12,15 @@ export abstract class GitHubRepository {
    */
   public readonly owner: string
 
-  constructor (name: string, owner: string) {
+  /**
+   * Ветка с чейнджлогом.
+   */
+  public readonly branch: string
+
+  constructor (name: string, owner: string, branch: string) {
     this.name = name
     this.owner = owner
+    this.branch = branch
   }
 
   /**

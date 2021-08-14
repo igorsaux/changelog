@@ -6,7 +6,7 @@ export class ErrorMock extends GitHubCDN {
     super('https://localhost')
   }
 
-  public async fetchJson (repository: GitHubRepository, filePath: string): Promise<unknown> {
-    return await this.fetch('https://localhost:75824')
+  public async FetchJsonAsync (repository: GitHubRepository, filePath: string): Promise<unknown> {
+    return await this.Fetch('https://localhost:75824')
   }
 }

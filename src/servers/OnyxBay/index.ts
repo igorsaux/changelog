@@ -1,6 +1,6 @@
 import '../../themes/onyx.scss'
 
 export * from './Changelog'
-export * from './Repository'
-export * from './Server'
+export * as Repositories from './Repository'
+export * as Servers from './Servers'
 export * from './Constants'
