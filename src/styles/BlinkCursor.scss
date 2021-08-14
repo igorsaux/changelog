@@ -1,0 +1,38 @@
+.BlinkCursor {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-family: Consolas, monospace;
+
+  &:before {
+    content: "";
+  }
+
+  &:after {
+    content: "_";
+    color: white;
+
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0% {
+      opacity: 0;
+    }
+
+    40% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+
+    90% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+}

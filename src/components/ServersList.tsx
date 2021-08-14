@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { GameServer } from '../abstractions/GameServer'
 import '../styles/ServersList.scss'
+import { BlinkCursor } from './BlinkCursor'
 
 /**
  * Пропсы для {@link ServersListProps}
@@ -14,6 +15,7 @@ export const ServersList = (props: ServersListProps) => {
   return <div className='ServersList'>
     <h1 className='ServersList__title'>Список серверов:</h1>
     {props.children}
+    <BlinkCursor />
   </div>
 }
 
