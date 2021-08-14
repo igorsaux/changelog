@@ -9,7 +9,7 @@ import { ChangelogEntry, loadChangelog, OnyxBayChangelogLayout } from '.'
  */
 export class ChaoticOnyx extends GameServer {
   constructor () {
-    super(new Repository.ChaoticOnyx(), '/html/changelogs/.all_changelog.json')
+    super('Chaotic Onyx', new Repository.ChaoticOnyx(), '/html/changelogs/.all_changelog.json')
   }
 
   public Changelog (cdn: GitHubCDN) {
@@ -36,7 +36,7 @@ export class ChaoticOnyx extends GameServer {
  */
 export class Eos extends GameServer {
   constructor () {
-    super(new Repository.Eos(), '/html/changelogs/.all_changelog.json')
+    super('EOS', new Repository.Eos(), '/html/changelogs/.all_changelog.json')
   }
 
   public Changelog (cdn: GitHubCDN) {

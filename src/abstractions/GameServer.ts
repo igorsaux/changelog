@@ -16,7 +16,13 @@ export abstract class GameServer {
    */
   public readonly changelogFilePath: string
 
-  constructor (repository: GitHubRepository, changelogFilePath: string) {
+  /**
+   * Название сервера.
+   */
+  public readonly name: string
+
+  constructor (name: string, repository: GitHubRepository, changelogFilePath: string) {
+    this.name = name
     this.repository = repository
     this.changelogFilePath = changelogFilePath
   }
