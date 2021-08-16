@@ -36,7 +36,7 @@ const Body = (props: BodyProps) => {
 }
 
 /**
- * Шапка чейнджлога.
+ * Тело чейнджлога.
  */
 ChangelogLayout.Body = Body
 
