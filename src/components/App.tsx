@@ -5,7 +5,9 @@ import * as CDN from '../cdn'
 import { Servers } from '../servers/OnyxBay'
 import { ServersList } from './ServersList'
 
-const cdn = new CDN.Vercel()
+export const AppContext = React.createContext({
+  cdn: new CDN.Vercel()
+})
 
 const SERVERS: { [key: string]: GameServer } = {
   chaotic: new Servers.ChaoticOnyx(),
@@ -27,7 +29,7 @@ export const App = () => {
 
   return <Switch>
     {keys.map(id => {
-      const ServerComponent = SERVERS[id].Changelog(cdn)
+      const ServerComponent = SERVERS[id].Changelog()
 
       return <Route key={id} path={`/${id}`}>
           <ServerComponent />

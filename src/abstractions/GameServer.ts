@@ -39,5 +39,5 @@ export abstract class GameServer {
   /**
    * Возвращает компонент для отрисовки чейнджлога.
    */
-  public abstract Changelog(cdn: GitHubCDN): () => React.ReactElement
+  public abstract Changelog (): () => React.ReactElement
 }

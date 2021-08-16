@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import * as Repository from './Repository'
 import { GameServer } from '../../abstractions/GameServer'
-import { GitHubCDN } from '../../abstractions/GitHubCdn'
 import { ChangelogEntry, loadChangelog, OnyxBayChangelogLayout } from '.'
+import { AppContext } from '../../components/App'
 
 /**
  * Сервер Chaotic Onyx.
@@ -12,11 +12,12 @@ export class ChaoticOnyx extends GameServer {
     super('Chaotic Onyx', new Repository.ChaoticOnyx(), '/html/changelogs/.all_changelog.json')
   }
 
-  public Changelog (cdn: GitHubCDN) {
+  public Changelog () {
     // eslint-disable-next-line react/display-name
     return () => {
       const [error, setError] = useState<string | undefined>(undefined)
       const [changelog, setChangelog] = useState<ChangelogEntry[]>([])
+      const { cdn } = useContext(AppContext)
 
       useEffect(() => {
         loadChangelog(cdn, this,
@@ -39,11 +40,12 @@ export class Eos extends GameServer {
     super('EOS', new Repository.Eos(), '/html/changelogs/.all_changelog.json')
   }
 
-  public Changelog (cdn: GitHubCDN) {
+  public Changelog () {
     // eslint-disable-next-line react/display-name
     return () => {
       const [error, setError] = useState<string | undefined>(undefined)
       const [changelog, setChangelog] = useState<ChangelogEntry[]>([])
+      const { cdn } = useContext(AppContext)
 
       useEffect(() => {
         loadChangelog(cdn, this,
