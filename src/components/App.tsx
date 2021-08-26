@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
 import { GameServer } from '../abstractions/GameServer'
-import * as CDN from '../cdn'
+import { Vercel } from '../cdn'
 import { Servers } from '../servers/OnyxBay'
 import { ServersList } from './ServersList'
 
 export const AppContext = React.createContext({
-  cdn: new CDN.Vercel()
+  cdn: new Vercel()
 })
 
 const SERVERS: { [key: string]: GameServer } = {

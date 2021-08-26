@@ -7,6 +7,6 @@
 - NodeJS
 
 # Скрипты
-- `npm run start` - запуск dev сервера.
+- `npm run dev` - запуск dev сервера.
 - `npm run build` - сборка production версии сайта.
 - `npm run deploy` - размещает **собранную** версию сайта на ветку gh-pages в remote репозиторий.

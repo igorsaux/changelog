@@ -97,7 +97,6 @@ const Change = (props: ChangeProps) => {
   return <li className={`Changes__change ${COLOR_BINDINGS[prefix]}`}>
     <i className={ICON_BINDINGS[prefix]} />
     <ReactMarkdown rehypePlugins={
-      // @ts-expect-error
       [raw]} transformLinkUri={null}>{props.change.message}</ReactMarkdown>
     {props.change.pr ? <PrLink pr={props.change.pr} /> : ''}
   </li>
