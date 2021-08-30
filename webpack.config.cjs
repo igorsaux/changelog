@@ -69,33 +69,14 @@ module.exports = (env, argv) => {
           test: /\.tsx$/,
           exclude: /node_modules/,
           use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: [
-                  '@babel/preset-typescript',
-                  '@babel/preset-react',
-                  '@babel/preset-env'
-                ]
-              }
-            },
-            { loader: 'ts-loader' }
+            'ts-loader'
           ]
         },
         {
           test: /\.ts$/,
           exclude: /node_modules/,
           use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: [
-                  '@babel/preset-typescript',
-                  '@babel/preset-env'
-                ]
-              }
-            },
-            { loader: 'ts-loader' }
+            'ts-loader'
           ]
         },
         {
