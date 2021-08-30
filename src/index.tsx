@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './styles/index.css'
 import App from './components/App'
 import { HashRouter } from 'react-router-dom'
+require('./styles/index.css')
 
 console.log(`
  ..|''||                             

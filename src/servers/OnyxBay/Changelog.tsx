@@ -6,6 +6,7 @@ import { GameServer } from '../../abstractions/GameServer'
 import { GitHubCDN } from '../../abstractions/GitHubCdn'
 import { ChangelogLayout } from '../../components/Changelog'
 import { Spinner } from '../../components/Spinner'
+require('../../themes/onyx.scss')
 
 export interface ChangeEntry {
   /**

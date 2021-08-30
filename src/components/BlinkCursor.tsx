@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/BlinkCursor.scss'
+require('../styles/BlinkCursor.scss')
 
 export const BlinkCursor = () => {
   return <div className='BlinkCursor'></div>
