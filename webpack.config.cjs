@@ -1,24 +1,26 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { resolve } = require('path')
+const path = require('path')
 const CopyPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 
+const resolve = (p) => path.resolve(__dirname, p)
+
 module.exports = (env, argv) => {
   const isDev = argv.mode === 'development'
-  const outputFolder = resolve(__dirname, 'dist')
+  const outputFolder = resolve('dist')
 
   const getPlugins = () => {
     const plugins = [
       new HtmlWebpackPlugin({
-        template: resolve(__dirname, 'public/index.html')
+        template: resolve('public/index.html')
       }),
       new CleanWebpackPlugin(),
       new CopyPlugin({
         patterns: [
-          resolve(__dirname, 'public/favicon.ico'),
-          resolve(__dirname, 'public/robots.txt')
+          resolve('public/favicon.ico'),
+          resolve('public/robots.txt')
         ]
       }),
       new webpack.ProvidePlugin({ process: 'process/browser' })
@@ -33,13 +35,13 @@ module.exports = (env, argv) => {
 
   return {
     entry: {
-      main: resolve(__dirname, 'src/index.tsx')
+      main: resolve('src/index.tsx')
     },
-    context: resolve(__dirname, 'src'),
+    context: resolve('src'),
     mode: isDev ? 'development' : 'production',
     output: {
       filename: '[name].[contenthash].js',
-      path: resolve(__dirname, 'dist')
+      path: resolve('dist')
     },
     plugins: getPlugins(),
     devtool: isDev ? 'source-map' : false,
