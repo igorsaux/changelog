@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "npm start",
+            "command": "npm run dev",
             "name": "Start Dev Server",
             "request": "launch",
             "type": "node-terminal"
