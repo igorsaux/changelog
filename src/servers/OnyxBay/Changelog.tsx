@@ -175,13 +175,13 @@ export const OnyxBayChangelogLayout = (props: OnyxBayChangelogLayoutProps) => {
   <ChangelogLayout.Header>
     <Header serverName={props.serverName} />
   </ChangelogLayout.Header>
-  <ChangelogLayout.Body>
-    {props.error
-      ? <Error message={props.error} />
-      : props.changelog.length
-        ? <Body changelog={props.changelog} />
-        : <Spinner text='Загрузка чейнджлогов' />}
-  </ChangelogLayout.Body>
+  {props.error
+    ? <Error message={props.error} />
+    : props.changelog.length
+      ? <ChangelogLayout.Body>
+            <Body changelog={props.changelog} />
+          </ChangelogLayout.Body>
+      : <Spinner text='Загрузка чейнджлогов' />}
 </ChangelogLayout>
 }
 
