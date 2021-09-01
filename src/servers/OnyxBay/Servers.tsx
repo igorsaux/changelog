@@ -4,6 +4,22 @@ import { GameServer } from '../../abstractions/GameServer'
 import { ChangelogEntry, loadChangelog, OnyxBayChangelogLayout } from '.'
 import { AppContext } from '../../components/App'
 
+const OnyxBayChangelog = (props: { server: GameServer }): React.ReactElement => {
+  const [error, setError] = useState<string | undefined>(undefined)
+  const [changelog, setChangelog] = useState<ChangelogEntry[]>([])
+  const { cdn } = useContext(AppContext)
+
+  useEffect(() => {
+    loadChangelog(cdn, props.server,
+      _ => setError('Проблемы с подключением ⚠️'),
+      data => setChangelog(
+        data as ChangelogEntry[]
+      ))
+  }, [])
+
+  return <OnyxBayChangelogLayout serverName='Chaotic Onyx' changelog={changelog} error={error} />
+}
+
 /**
  * Сервер Chaotic Onyx.
  */
@@ -12,23 +28,8 @@ export class ChaoticOnyx extends GameServer {
     super('Chaotic Onyx', new Repository.ChaoticOnyx(), '/html/changelogs/.all_changelog.json')
   }
 
-  public Changelog () {
-    // eslint-disable-next-line react/display-name
-    return () => {
-      const [error, setError] = useState<string | undefined>(undefined)
-      const [changelog, setChangelog] = useState<ChangelogEntry[]>([])
-      const { cdn } = useContext(AppContext)
-
-      useEffect(() => {
-        loadChangelog(cdn, this,
-          _ => setError('Проблемы с подключением ⚠️'),
-          data => setChangelog(
-            data as ChangelogEntry[]
-          ))
-      }, [])
-
-      return <OnyxBayChangelogLayout serverName='Chaotic Onyx' changelog={changelog} error={error} />
-    }
+  public override Changelog (): () => React.ReactElement {
+    return () => OnyxBayChangelog({ server: this })
   }
 }
 
@@ -40,22 +41,7 @@ export class Eos extends GameServer {
     super('EOS', new Repository.Eos(), '/html/changelogs/.all_changelog.json')
   }
 
-  public Changelog () {
-    // eslint-disable-next-line react/display-name
-    return () => {
-      const [error, setError] = useState<string | undefined>(undefined)
-      const [changelog, setChangelog] = useState<ChangelogEntry[]>([])
-      const { cdn } = useContext(AppContext)
-
-      useEffect(() => {
-        loadChangelog(cdn, this,
-          _ => setError('Проблемы с подключением ⚠️'),
-          data => setChangelog(
-            data as ChangelogEntry[]
-          ))
-      }, [])
-
-      return <OnyxBayChangelogLayout serverName='EOS' changelog={changelog} error={error} />
-    }
+  public override Changelog (): () => React.ReactElement {
+    return () => OnyxBayChangelog({ server: this })
   }
 }

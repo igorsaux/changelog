@@ -13,7 +13,7 @@ export class Mock extends GitHubCDN {
   /**
    * Возвращает мок данные через 5 секунд.
    */
-  public async FetchJsonAsync (repository: GitHubRepository, filePath: string): Promise<unknown> {
+  public override async FetchJsonAsync (repository: GitHubRepository, filePath: string): Promise<unknown> {
     return await new Promise((resolve, reject) => setTimeout(() => resolve(MockData), 5000))
   }
 }

@@ -9,6 +9,10 @@
     "noUnusedParameters": false,
     "jsx": "react-jsx",
     "resolveJsonModule": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "noImplicitOverride": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true
   }
 }
