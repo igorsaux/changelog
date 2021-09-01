@@ -1,0 +1,51 @@
+$background-color: #00000067;
+
+.Modal {
+  position: absolute;
+  bottom: 2rem;
+
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+
+  padding: 0.8rem;
+
+  font-size: 1.2em;
+  background-color: $background-color;
+  border: 1px solid lighten($color: $background-color, $amount: 40);
+  border-radius: 0.5rem;
+  
+  box-shadow: 0 0 0.5rem transparentize($color: $background-color, $amount: 0.2);
+  backdrop-filter: blur(0.2rem);
+  
+  animation: grow 250ms ease-out forwards;
+
+  &--hide {
+    animation: minimize 250ms ease-in forwards;
+  }
+
+  @keyframes grow {
+    from {
+      transform: scale(0%);
+      opacity: 0;
+    }
+
+    to {
+      transform: scale(100%);
+      opacity: 1;
+    }
+  }
+
+  @keyframes minimize {
+    from {
+      transform: scale(100%);
+      opacity: 1;
+    }
+
+    to {
+      transform: scale(0%);
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

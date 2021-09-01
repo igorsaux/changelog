@@ -6,16 +6,4 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100%;
-  width: 100%;
-
-  > * {
-    margin: auto;
-  }
-
-  &__header {
-    margin-top: 0;
-    padding-top: 0.5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
 }

@@ -5,6 +5,7 @@ import { COLOR_BINDINGS, ICON_BINDINGS, LINKS } from '.'
 import { GameServer } from '../../abstractions/GameServer'
 import { GitHubCDN } from '../../abstractions/GitHubCdn'
 import { ChangelogLayout } from '../../components/Changelog'
+import { Modal } from '../../components/Modal'
 import { Spinner } from '../../components/Spinner'
 require('../../themes/onyx.scss')
 
@@ -155,10 +156,24 @@ const Body = (props: BodyProps) => {
 
 interface ErrorProps {
   message: string
+  show: boolean
 }
 
-const Error = (props: ErrorProps) => {
-  return <div className='Error'>{props.message}</div>
+const ErrorModal = (props: ErrorProps) => {
+  return <Modal className='Error' show={props.show}>
+      <span>{props.message}</span>
+    </Modal>
+}
+
+interface LoadingProps {
+  message: string
+  show: boolean
+}
+
+const LoadingModal = (props: LoadingProps) => {
+  return <Modal show={props.show}>
+    <Spinner text={props.message} />
+  </Modal>
 }
 
 /**
@@ -172,21 +187,23 @@ const Error = (props: ErrorProps) => {
 
 export const OnyxBayChangelogLayout = (props: OnyxBayChangelogLayoutProps) => {
   return <ChangelogLayout theme='onyx'>
-  <ChangelogLayout.Header>
-    <Header serverName={props.serverName} />
-  </ChangelogLayout.Header>
-  {props.error
-    ? <Error message={props.error} />
-    : props.changelog.length
-      ? <ChangelogLayout.Body>
-            <Body changelog={props.changelog} />
-          </ChangelogLayout.Body>
-      : <Spinner text='Загрузка чейнджлогов' />}
-</ChangelogLayout>
+    <ChangelogLayout.Header>
+      <Header serverName={props.serverName} />
+    </ChangelogLayout.Header>
+    {(props.changelog.length && <ChangelogLayout.Body>
+        <Body changelog={props.changelog} />
+      </ChangelogLayout.Body>) || ''}
+    <LoadingModal
+      message='Загрузка чейнджлогов'
+      show={!props.changelog.length && !props.error} />
+    {props.error && <ErrorModal
+      message={props.error}
+      show={true} />}
+  </ChangelogLayout>
 }
 
 export const loadChangelog = (cdn: GitHubCDN, server: GameServer, onError: (reason: string) => void, onSuccessful: (data: unknown) => void) => {
   server.LoadChangelogAsync(cdn)
-    .catch(reason => onError(reason))
     .then(data => onSuccessful(data))
+    .catch(reason => onError(reason))
 }

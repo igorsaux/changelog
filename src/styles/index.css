@@ -7,6 +7,10 @@ body,
   font-family: Radiance, sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: "Radiance";
   src: url("https://steamcdn-a.akamaihd.net/apps/underlords/fonts/Radiance-Regular.woff") format("woff");
