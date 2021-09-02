@@ -17,7 +17,7 @@ const OnyxBayChangelog = (props: { server: GameServer }): React.ReactElement => 
       ))
   }, [])
 
-  return <OnyxBayChangelogLayout serverName='Chaotic Onyx' changelog={changelog} error={error} />
+  return <OnyxBayChangelogLayout serverName={props.server.name} changelog={changelog} error={error} />
 }
 
 /**
