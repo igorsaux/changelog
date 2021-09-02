@@ -6,6 +6,7 @@ $background-color: #000000bb;
 
   bottom: 1rem;
   padding: 0.5rem;
+  font-size: 1.25em;
 
   color: white;
   border: none;
@@ -24,5 +25,23 @@ $background-color: #000000bb;
   &--hide {
     visibility: hidden;
     transform: translateX(-200%);
+  }
+
+  &:focus {
+    animation: click 250ms ease-in-out;
+  }
+
+  @keyframes click {
+    from {
+      transform: scale(100%);
+    }
+
+    50% {
+      transform: scale(50%);
+    }
+
+    to {
+      transform: scale(100%);
+    }
   }
 }
