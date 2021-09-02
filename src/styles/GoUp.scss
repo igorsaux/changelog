@@ -1,0 +1,28 @@
+$background-color: #000000bb;
+
+.GoUp {
+  position: sticky;
+  align-self: flex-start;
+
+  bottom: 1rem;
+  padding: 0.5rem;
+
+  color: white;
+  border: none;
+  appearance: none;
+  background-color: $background-color;
+  backdrop-filter: blur(0.2rem);
+  border-radius: 0.2rem;
+  transition: all 250ms;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten($color: $background-color, $amount: 5);
+  }
+
+  &--hide {
+    visibility: hidden;
+    transform: translateX(-200%);
+  }
+}

@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import raw from 'rehype-raw'
 import { COLOR_BINDINGS, ICON_BINDINGS, LINKS } from '.'
 import { GameServer } from '../../abstractions/GameServer'
 import { GitHubCDN } from '../../abstractions/GitHubCdn'
 import { ChangelogLayout } from '../../components/Changelog'
+import { GoUp } from '../../components/GoUp'
 import { Modal } from '../../components/Modal'
 import { Spinner } from '../../components/Spinner'
+import useObserver from '../../hooks/useObserver'
 import '../../themes/onyx.scss'
 
 export interface ChangeEntry {
@@ -186,13 +188,19 @@ const LoadingModal = (props: LoadingProps) => {
 }
 
 export const OnyxBayChangelogLayout = (props: OnyxBayChangelogLayoutProps) => {
+  const headerRef = useRef<HTMLDivElement>(null)
+  const headerIsInView = useObserver(headerRef)
+
   return <ChangelogLayout theme='onyx'>
-    <ChangelogLayout.Header>
+    <ChangelogLayout.Header ref={headerRef}>
       <Header serverName={props.serverName} />
     </ChangelogLayout.Header>
-    {(props.changelog.length && <ChangelogLayout.Body>
+    {(props.changelog.length && <>
+      <ChangelogLayout.Body>
         <Body changelog={props.changelog} />
-      </ChangelogLayout.Body>) || ''}
+      </ChangelogLayout.Body>
+      <GoUp show={!headerIsInView} />
+      </>) || ''}
     <LoadingModal
       message='Загрузка чейнджлогов'
       show={!props.changelog.length && !props.error} />

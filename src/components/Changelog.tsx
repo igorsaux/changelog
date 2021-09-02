@@ -43,17 +43,15 @@ ChangelogLayout.Body = Body
 /**
  * Пропсы для {@link ChangelogLayout.Header}
  */
- interface HeaderProps {
+interface HeaderProps {
   children: ReactNode
-}
-
-const Header = (props: HeaderProps) => {
-  return <div className='ChangelogLayout__header'>
-    {props.children}
-  </div>
 }
 
 /**
  * Шапка чейнджлога.
  */
-ChangelogLayout.Header = Header
+ChangelogLayout.Header = React.forwardRef<HTMLDivElement, HeaderProps>(function Header (props, ref) {
+  return <div ref={ref} className='ChangelogLayout__header'>
+    {props.children}
+  </div>
+})
