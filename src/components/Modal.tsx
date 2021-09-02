@@ -1,5 +1,5 @@
 import React from 'react'
-require('../styles/Modal.scss')
+import '../styles/Modal.scss'
 
 interface ModalProps {
   children: React.ReactElement

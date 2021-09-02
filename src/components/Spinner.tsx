@@ -1,5 +1,5 @@
 import React from 'react'
-require('../styles/Spinner.scss')
+import '../styles/Spinner.scss'
 
 /**
  * Пропсы для {@link Spinner}

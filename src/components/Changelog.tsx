@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-require('../styles/Changelog.scss')
+import '../styles/Changelog.scss'
 
 /**
  * Пропсы для {@link ChangelogLayout}.

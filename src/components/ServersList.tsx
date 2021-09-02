@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { GameServer } from '../abstractions/GameServer'
 import { BlinkCursor } from './BlinkCursor'
-require('../styles/ServersList.scss')
+import '../styles/ServersList.scss'
 
 /**
  * Пропсы для {@link ServersListProps}

@@ -7,7 +7,7 @@ import { GitHubCDN } from '../../abstractions/GitHubCdn'
 import { ChangelogLayout } from '../../components/Changelog'
 import { Modal } from '../../components/Modal'
 import { Spinner } from '../../components/Spinner'
-require('../../themes/onyx.scss')
+import '../../themes/onyx.scss'
 
 export interface ChangeEntry {
   /**
