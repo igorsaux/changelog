@@ -1,4 +1,4 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import { GitHubCDN } from './GitHubCdn'
 import { GitHubRepository } from './GitHubRepository'
 
@@ -39,5 +39,5 @@ export abstract class GameServer {
   /**
    * Возвращает компонент для отрисовки чейнджлога.
    */
-  public abstract Changelog (): () => React.ReactElement
+  public abstract Changelog (): () => ReactNode
 }

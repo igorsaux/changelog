@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import '../styles/Modal.scss'
 
 /**
  * Пропсы для {@link Modal}
  */
 interface ModalProps {
-  children: React.ReactElement
+  children: ReactNode
   show?: boolean
   className?: string
 }
