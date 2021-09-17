@@ -189,7 +189,6 @@ const LoadingModal = (props: LoadingProps) => {
 
 export const OnyxBayChangelogLayout = (props: OnyxBayChangelogLayoutProps) => {
   const headerRef = useRef<HTMLDivElement>(null)
-  const headerIsInView = useObserver(headerRef)
 
   return <ChangelogLayout theme='onyx'>
     <ChangelogLayout.Header ref={headerRef}>
@@ -199,7 +198,7 @@ export const OnyxBayChangelogLayout = (props: OnyxBayChangelogLayoutProps) => {
       <ChangelogLayout.Body>
         <Body changelog={props.changelog} />
       </ChangelogLayout.Body>
-      <GoUp show={!headerIsInView} />
+      <GoUp topElement={headerRef} />
       </>) || ''}
     <LoadingModal
       message='Загрузка чейнджлогов'

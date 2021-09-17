@@ -15,7 +15,8 @@ $background-color: #000000bb;
   backdrop-filter: blur(0.2rem);
   border-radius: 0.2rem;
   transition: all 250ms;
-
+  transform: translateX(0);
+  border: 1px solid #353535;
   cursor: pointer;
 
   &:hover {
