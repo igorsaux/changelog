@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { ReactElement } from 'react-markdown/lib/react-markdown'
 import { GitHubCDN } from './GitHubCdn'
 import { GitHubRepository } from './GitHubRepository'
 
@@ -39,5 +40,5 @@ export abstract class GameServer {
   /**
    * Возвращает компонент для отрисовки чейнджлога.
    */
-  public abstract Changelog (): () => ReactNode
+  public abstract Changelog (): () => ReactElement
 }

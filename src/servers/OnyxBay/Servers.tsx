@@ -1,10 +1,11 @@
-import React, { ReactNode, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import * as Repository from './Repository'
 import { GameServer } from '../../abstractions/GameServer'
 import { ChangelogEntry, loadChangelog, OnyxBayChangelogLayout } from '.'
 import { AppContext } from '../../components/App'
+import { ReactElement } from 'react-markdown/lib/react-markdown'
 
-const OnyxBayChangelog = (props: { server: GameServer }): ReactNode => {
+const OnyxBayChangelog = (props: { server: GameServer }): ReactElement => {
   const [error, setError] = useState<string | undefined>(undefined)
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([])
   const { cdn } = useContext(AppContext)
@@ -28,7 +29,7 @@ export class ChaoticOnyx extends GameServer {
     super('Chaotic Onyx', new Repository.ChaoticOnyx(), '/html/changelogs/.all_changelog.json')
   }
 
-  public override Changelog (): () => ReactNode {
+  public override Changelog (): () => ReactElement {
     return () => OnyxBayChangelog({ server: this })
   }
 }
@@ -41,7 +42,7 @@ export class Eos extends GameServer {
     super('EOS', new Repository.Eos(), '/html/changelogs/.all_changelog.json')
   }
 
-  public override Changelog (): () => ReactNode {
+  public override Changelog (): () => ReactElement {
     return () => OnyxBayChangelog({ server: this })
   }
 }

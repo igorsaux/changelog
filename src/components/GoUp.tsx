@@ -13,6 +13,6 @@ export const GoUp = (props: GoUpProps) => {
       onClick={() => window.scrollTo(0, 0)}
       className={`GoUp ${props.show ? '' : 'GoUp--hide'}`}
     >
-    <i className='fas fa-arrow-up'></i> Вверх
+    <i className='fas fa-arrow-up' />
   </button>
 }
