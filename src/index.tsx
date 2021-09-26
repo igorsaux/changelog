@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import App from './components/App'
 import { HashRouter } from 'react-router-dom'
 import './styles/index.css'
+import 'normalize.css/normalize.css'
 
 console.log(`
  ..|''||                             
