@@ -95,10 +95,7 @@ function GitHubPopover (props: GitHubPopoverProps) {
     setArrowMargin(newArrowMargin)
   }, [])
   useEffect(() => {
-    fetch(`https://api.github.com/repos/${repositoryOwner}/${repositoryName}/pulls/${prNumber}`, {
-      cache: 'force-cache'
-    })
-
+    fetch(`https://api.github.com/repos/${repositoryOwner}/${repositoryName}/pulls/${prNumber}`)
       .then(data => data.json())
       .then(data => {
         setIsError(false)
