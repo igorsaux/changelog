@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import raw from 'rehype-raw'
 import { COLOR_BINDINGS, ICON_BINDINGS, LINKS } from '.'
 import { GameServer } from '../../abstractions/GameServer'
 import { GitHubCDN } from '../../abstractions/GitHubCdn'
 import { ChangelogLayout } from '../../components/Changelog'
+import GitHubPopover from '../../components/GitHubPopover'
 import { GoUp } from '../../components/GoUp'
 import { Modal } from '../../components/Modal'
 import { Spinner } from '../../components/Spinner'
-import useObserver from '../../hooks/useObserver'
 import '../../themes/onyx.scss'
 
 export interface ChangeEntry {
@@ -86,8 +86,18 @@ interface PrLinkProps {
 }
 
 const PrLink = (props: PrLinkProps) => {
-  return <sup className='PR'>
-    <a className='PR__link' href={`https://github.com/ChaoticOnyx/OnyxBay/pull/${props.pr}`}>#{props.pr}</a>
+  const linkRef = useRef(null)
+  const [showTooltip, setShowTooltip] = useState(false)
+  const url = `https://github.com/ChaoticOnyx/OnyxBay/pull/${props.pr}`
+
+  return <sup
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+      className='PR'>
+    <a ref={linkRef} className='PR__link' href={url}>#{props.pr}</a>
+    {showTooltip
+      ? <GitHubPopover prUrl={url} />
+      : null}
   </sup>
 }
 

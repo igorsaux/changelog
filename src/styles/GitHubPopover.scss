@@ -1,0 +1,116 @@
+@mixin skeleton {
+  background-size: 800px 100px;
+  background: linear-gradient(to right, #eeeeee 10%, #dadada 50%, #eeeeee 100%);
+  animation: skeleton-gradient 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.GitHubPopover {
+  position: absolute;
+  top: 7px;
+  animation: appear 250ms ease-out;
+  text-decoration: none;
+
+  &__Arrow {
+    top: 4px;
+    width: 14px;
+    height: 7px;
+    position: relative;
+  }
+
+  &__Content {
+    color: black;
+    background-color: white;
+    border: 1px solid #E1E4E8;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+  }
+  
+  @keyframes appear {
+    from {
+      transform: scale(0);
+    }
+
+    to {
+      transform: scale(1);
+    }
+  }
+}
+
+.PullRequestCard {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: center;
+
+  .Repository {
+    height: 15px;
+    color: #586069;
+
+    &--Placeholder {
+      width: 10ch;
+      height: 2ch;
+      @include skeleton;
+    }
+  }
+
+  .Naming {
+    font-size: 1.5em;
+    font-weight: bold;
+
+    &--Placeholder {
+      margin-top: 5px;
+      width: 25ch;
+      height: 5ch;
+      @include skeleton;
+    }
+
+    .Number {
+      height: 15px;
+      color: #959DA5;
+    }
+  
+    .Title {
+      height: 15px;
+      color: #2F363D;
+    }
+  }
+
+  .Misc {
+    margin-top: 5px;
+
+    &--Placeholder {
+      margin-top: 5px;
+      width: 25ch;
+      height: 5ch;
+      @include skeleton;
+    }
+
+    .Avatar {
+      max-width: 18px;
+      max-height: 18px;
+      vertical-align: middle;
+      border-radius: 100%;
+      margin-right: 5px;
+    }
+
+    .Author {
+      font-weight: bold;
+    }
+
+    .CloseDate {
+      color: #959DA5;
+    }
+  }
+
+  @keyframes skeleton-gradient {
+    from {
+      background-position: -100px;
+    }
+
+    to {
+      background-position: 390px;
+    }
+  }
+}
