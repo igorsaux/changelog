@@ -42,7 +42,7 @@ function PullRequest (props: { pr: PullRequestInfo }) {
     <div className="Misc">
       <img className="Avatar" src={pr.author.avatar} alt={pr.author.login} />
       <span className="Author">{pr.author.login}</span>
-      <span className="CloseDate">· {dateTimeFormat.format(new Date(pr.closed))}</span>
+      <span className="CloseDate"> • {dateTimeFormat.format(new Date(pr.closed))}</span>
     </div>
   </div>
 }
@@ -80,7 +80,9 @@ function GitHubPopover (props: GitHubPopoverProps) {
     }
   }, [])
   useEffect(() => {
-    fetch(`https://api.github.com/repos/${repositoryOwner}/${repositoryName}/pulls/${prNumber}`)
+    fetch(`https://api.github.com/repos/${repositoryOwner}/${repositoryName}/pulls/${prNumber}`, {
+      cache: 'force-cache'
+    })
       .then(data => data.json())
       .then(data => {
         return setPrData({
