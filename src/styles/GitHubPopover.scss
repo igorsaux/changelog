@@ -6,23 +6,22 @@
 
 .GitHubPopover {
   position: absolute;
-  top: 7px;
+  top: 20px;
   text-decoration: none;
   z-index: 10;
 
   &__Arrow {
-    top: 4px;
-    width: 14px;
-    height: 7px;
-    position: relative;
+    bottom: calc(100% - 1px);
+    position: absolute;
   }
 
   &__Content {
     color: black;
     background-color: white;
-    border: 1px solid #E1E4E8;
+    border: 1px solid #D0D7DE;
     border-radius: 0.3rem;
     padding: 0.5rem;
+    box-shadow: 0 0 15px #0000009c;
   }
 }
 
