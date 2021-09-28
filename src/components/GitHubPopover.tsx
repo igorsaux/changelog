@@ -1,12 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { MutableRefObject, useCallback, useEffect, useState } from 'react'
 import '../styles/GitHubPopover.scss'
-
-/**
- * Пропсы для {@link GitHubPopover}
- */
-type GitHubPopoverProps = {
-  prUrl: string
-}
 
 /**
  * Информация о пулл реквеста которая будет отображена на карточке.
@@ -25,7 +18,7 @@ type PullRequestInfo = {
   }
 }
 
-const popoverMargin = '-25px'
+const arrowWidth = 14
 const popoverWidth = 300
 const dateTimeFormat = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
 
@@ -55,6 +48,20 @@ function PullRequestPlaceholder () {
   </div>
 }
 
+function PullRequestError () {
+  return <div className="PullRequestCard PullRequestCard--Error">
+    😔 Гитхаб недоступен.
+  </div>
+}
+
+/**
+ * Пропсы для {@link GitHubPopover}
+ */
+ type GitHubPopoverProps = {
+  prUrl: string,
+  target: MutableRefObject<HTMLAnchorElement | null>
+}
+
 /**
  * Компонент для отображения "карточки" пулл реквеста при наведении мышки.
  */
@@ -64,27 +71,37 @@ function GitHubPopover (props: GitHubPopoverProps) {
   const repositoryName = splittedUrl[4]
   const prNumber = splittedUrl[6]
 
+  const [isError, setIsError] = useState(false)
   const [prData, setPrData] = useState<PullRequestInfo | undefined>(undefined)
-  const [direction, setDirection] = useState<'right' | 'left'>('right')
+  const [popoverMargin, setPopoverMargin] = useState(0)
+  const [arrowMargin, setArrowMargin] = useState(0)
   const tooltipRef = useCallback((instance: HTMLAnchorElement | null) => {
-    if (!instance) {
-      return setDirection('right')
+    if (!instance || !props.target.current) {
+      return setPopoverMargin(0)
     }
 
-    const sizes = instance.getBoundingClientRect()
+    const selfSize = instance.getBoundingClientRect()
+    const targetSize = props.target.current.getBoundingClientRect()
+    let newPopoverMargin = 0
+    let newArrowMargin = 0
 
-    if (sizes.x + popoverWidth > document.body.clientWidth - 50) {
-      return setDirection('right')
-    } else {
-      return setDirection('left')
+    if (selfSize.x + popoverWidth >= document.body.offsetWidth) {
+      newPopoverMargin = -(selfSize.x + popoverWidth - document.body.offsetWidth + 10)
     }
+
+    newArrowMargin = targetSize.x - selfSize.x - newPopoverMargin
+
+    setPopoverMargin(newPopoverMargin)
+    setArrowMargin(newArrowMargin)
   }, [])
   useEffect(() => {
     fetch(`https://api.github.com/repos/${repositoryOwner}/${repositoryName}/pulls/${prNumber}`, {
       cache: 'force-cache'
     })
+
       .then(data => data.json())
       .then(data => {
+        setIsError(false)
         return setPrData({
           title: data.title,
           closed: data.closed_at,
@@ -99,14 +116,18 @@ function GitHubPopover (props: GitHubPopoverProps) {
           }
         })
       })
+      .catch(_ => {
+        setIsError(true)
+        return _
+      })
   }, [])
 
   const arrowStyle = {
-    left: `${direction === 'right' ? 'calc(100% - 40px - 7px)' : '37px'}`
+    left: `${arrowWidth + arrowMargin}px`
   }
 
   const popoverStyle = {
-    [direction]: popoverMargin
+    left: `${popoverMargin}px`
   }
 
   return <a href={props.prUrl} style={popoverStyle} ref={tooltipRef} className="GitHubPopover">
@@ -117,7 +138,11 @@ function GitHubPopover (props: GitHubPopoverProps) {
     <div className="GitHubPopover__Content" style={{
       width: `${popoverWidth}px`
     }}>
-      {prData ? <PullRequest pr={prData} /> : <PullRequestPlaceholder /> }
+      {isError
+        ? <PullRequestError />
+        : prData
+          ? <PullRequest pr={prData} />
+          : <PullRequestPlaceholder /> }
     </div>
   </a>
 }

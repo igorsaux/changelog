@@ -7,7 +7,6 @@
 .GitHubPopover {
   position: absolute;
   top: 7px;
-  animation: appear 250ms ease-out;
   text-decoration: none;
   z-index: 10;
 
@@ -25,16 +24,6 @@
     border-radius: 0.3rem;
     padding: 0.5rem;
   }
-  
-  @keyframes appear {
-    from {
-      transform: scale(0);
-    }
-
-    to {
-      transform: scale(1);
-    }
-  }
 }
 
 .PullRequestCard {
@@ -44,6 +33,12 @@
   align-content: flex-start;
   align-items: flex-start;
   justify-content: center;
+
+  &--Error {
+    font-size: 1.5em;
+    align-content: center;
+    color: #2F363D;
+  }
 
   .Repository {
     height: 15px;

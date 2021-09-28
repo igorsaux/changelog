@@ -86,7 +86,7 @@ interface PrLinkProps {
 }
 
 const PrLink = (props: PrLinkProps) => {
-  const linkRef = useRef(null)
+  const linkRef = useRef<HTMLAnchorElement>(null)
   const [showTooltip, setShowTooltip] = useState(false)
   const url = `https://github.com/ChaoticOnyx/OnyxBay/pull/${props.pr}`
 
@@ -96,7 +96,7 @@ const PrLink = (props: PrLinkProps) => {
       className='PR'>
     <a ref={linkRef} className='PR__link' href={url}>#{props.pr}</a>
     {showTooltip
-      ? <GitHubPopover prUrl={url} />
+      ? <GitHubPopover target={linkRef} prUrl={url} />
       : null}
   </sup>
 }
