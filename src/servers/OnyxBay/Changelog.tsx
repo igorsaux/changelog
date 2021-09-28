@@ -94,7 +94,7 @@ const PrLink = (props: PrLinkProps) => {
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
       className='PR'>
-    <a ref={linkRef} className='PR__link' href={url}>#{props.pr}</a>
+    <a ref={linkRef} rel='noreferrer' target='_blank' className='PR__link' href={url}>#{props.pr}</a>
     {showTooltip
       ? <GitHubPopover target={linkRef} prUrl={url} />
       : null}
