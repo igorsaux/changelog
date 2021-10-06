@@ -4,25 +4,22 @@
   animation: skeleton-gradient 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 }
 
+.tippy-box[data-theme~='light'] {
+  box-shadow: 0 0 15px #0000009c;
+  background-color: white;
+  border: 1px solid #D0D7DE;
+}
+
+.tippy-box[data-theme~='light'][data-placement^='top'] > .tippy-arrow::before {
+  border-top-color: white;
+}
+
+.tippy-box[data-theme~='light'][data-placement^='bottom'] > .tippy-arrow::before {
+  border-bottom-color: white;
+}
+
 .GitHubPopover {
-  position: absolute;
-  top: 20px;
   text-decoration: none;
-  z-index: 10;
-
-  &__Arrow {
-    bottom: calc(100% - 1px);
-    position: absolute;
-  }
-
-  &__Content {
-    color: black;
-    background-color: white;
-    border: 1px solid #D0D7DE;
-    border-radius: 0.3rem;
-    padding: 0.5rem;
-    box-shadow: 0 0 15px #0000009c;
-  }
 }
 
 .PullRequestCard {
@@ -40,7 +37,7 @@
   }
 
   .Repository {
-    height: 15px;
+    font-size: 0.9em;
     color: #586069;
 
     &--Placeholder {
@@ -51,7 +48,7 @@
   }
 
   .Naming {
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
 
     &--Placeholder {
@@ -73,8 +70,6 @@
   }
 
   .Misc {
-    margin-top: 5px;
-
     &--Placeholder {
       margin-top: 5px;
       width: 25ch;
@@ -91,11 +86,12 @@
     }
 
     .Author {
+      color: black;
       font-weight: bold;
     }
 
     .CloseDate {
-      color: #959DA5;
+      color: #959da5;
     }
   }
 

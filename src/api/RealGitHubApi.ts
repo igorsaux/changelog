@@ -1,5 +1,5 @@
-import { GitHubApi } from '../abstractions/GitHubApi.js'
-import { GitHubPullRequest } from '../abstractions/GitHubPullRequest.js'
+import { GitHubApi } from '../abstractions/GitHubApi'
+import { GitHubPullRequest } from '../abstractions/GitHubPullRequest'
 import { GitHubRepository } from '../abstractions/GitHubRepository'
 
 export class RealGitHubApi implements GitHubApi {

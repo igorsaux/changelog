@@ -1,70 +1,69 @@
-import React, { MutableRefObject, useCallback, useEffect, useState } from 'react'
+import Tippy from '@tippyjs/react'
+import React, { useContext, useState } from 'react'
+import 'tippy.js/dist/tippy.css'
+import 'tippy.js/animations/scale.css'
+import 'tippy.js/dist/border.css'
 import '../styles/GitHubPopover.scss'
+import { AppContext } from './App'
+import { GitHubRepository } from '../abstractions/GitHubRepository'
+import { GitHubPullRequest } from '../abstractions/GitHubPullRequest'
 
-/**
- * Информация о пулл реквеста которая будет отображена на карточке.
- */
-type PullRequestInfo = {
-  title: string,
-  closed: string,
-  author: {
-    login: string,
-    avatar: string
-  },
-  number: string,
-  repository: {
-    owner: string,
-    name: string
-  }
-}
+const dateTimeFormat = new Intl.DateTimeFormat('ru-RU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+})
 
-const arrowWidth = 14
-const popoverWidth = 300
-const dateTimeFormat = new Intl.DateTimeFormat('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
-
-function PullRequest (props: { pr: PullRequestInfo }) {
+function PullRequest (props: { pr: GitHubPullRequest }) {
   const { pr } = props
 
-  return <div className="PullRequestCard">
-    <div className="Repository">
-      {pr.repository.owner}/{pr.repository.name}
+  return (
+    <div className='PullRequestCard'>
+      <div className='Repository'>
+        {pr.base.repo.owner.login}/{pr.base.repo.name}
+      </div>
+      <div className='Naming'>
+        <span className='Number'>#{pr.number}</span>{' '}
+        <span className='Title'>{pr.title}</span>
+      </div>
+      <div className='Misc'>
+        <img className='Avatar' src={pr.user.avatar_url} alt={pr.user.login} />
+        <span className='Author'>{pr.user.login}</span>
+        <span className='CloseDate'>
+          {' '}
+          • {dateTimeFormat.format(new Date(pr.closed_at))}
+        </span>
+      </div>
     </div>
-    <div className="Naming">
-      <span className="Number">#{pr.number}</span> <span className="Title">{pr.title}</span>
-    </div>
-    <div className="Misc">
-      <img className="Avatar" src={pr.author.avatar} alt={pr.author.login} />
-      <span className="Author">{pr.author.login}</span>
-      <span className="CloseDate"> • {dateTimeFormat.format(new Date(pr.closed))}</span>
-    </div>
-  </div>
+  )
 }
 
 function PullRequestPlaceholder () {
-  return <div className="PullRequestCard PullRequestCard--Placeholder">
-    <div className="Repository Repository--Placeholder"></div>
-    <div className="Naming Naming--Placeholder"></div>
-    <div className="Misc Misc--Placeholder"></div>
-  </div>
+  return (
+    <div className='PullRequestCard PullRequestCard--Placeholder'>
+      <div className='Repository Repository--Placeholder'></div>
+      <div className='Naming Naming--Placeholder'></div>
+      <div className='Misc Misc--Placeholder'></div>
+    </div>
+  )
 }
 
 function PullRequestError () {
-  return <div className="PullRequestCard PullRequestCard--Error">
-    😔 Гитхаб недоступен.
-  </div>
+  return (
+    <div className='PullRequestCard PullRequestCard--Error'>
+      😔 Гитхаб недоступен.
+    </div>
+  )
 }
 
 /**
- * Пропсы для {@link GitHubPopover}
+ * Пропсы для {@link GitHubPopoverProps}
  */
- type GitHubPopoverProps = {
-  prUrl: string,
-  target: MutableRefObject<HTMLAnchorElement | null>
+type GitHubPopoverProps = {
+  children: React.ReactElement
+  prUrl: string
 }
 
-/**
- * Компонент для отображения "карточки" пулл реквеста при наведении мышки.
- */
 function GitHubPopover (props: GitHubPopoverProps) {
   const splittedUrl = props.prUrl.split('/')
   const repositoryOwner = splittedUrl[3]
@@ -72,76 +71,52 @@ function GitHubPopover (props: GitHubPopoverProps) {
   const prNumber = splittedUrl[6]
 
   const [isError, setIsError] = useState(false)
-  const [prData, setPrData] = useState<PullRequestInfo | undefined>(undefined)
-  const [popoverMargin, setPopoverMargin] = useState(0)
-  const [arrowMargin, setArrowMargin] = useState(0)
-  const tooltipRef = useCallback((instance: HTMLAnchorElement | null) => {
-    if (!instance || !props.target.current) {
-      return setPopoverMargin(0)
-    }
+  const [prData, setPrData] = useState<GitHubPullRequest | undefined>(undefined)
+  const { api } = useContext(AppContext)
 
-    const selfSize = instance.getBoundingClientRect()
-    const targetSize = props.target.current.getBoundingClientRect()
-    let newPopoverMargin = 0
-    let newArrowMargin = 0
-
-    if (selfSize.x + popoverWidth >= document.body.offsetWidth) {
-      newPopoverMargin = -(selfSize.x + popoverWidth - document.body.offsetWidth + 10)
-    }
-
-    newArrowMargin = targetSize.x - selfSize.x - newPopoverMargin
-
-    setPopoverMargin(newPopoverMargin)
-    setArrowMargin(newArrowMargin)
-  }, [])
-  useEffect(() => {
-    fetch(`https://api.github.com/repos/${repositoryOwner}/${repositoryName}/pulls/${prNumber}`)
-      .then(data => data.json())
-      .then(data => {
-        setIsError(false)
-        return setPrData({
-          title: data.title,
-          closed: data.closed_at,
-          author: {
-            login: data.user.login,
-            avatar: data.user.avatar_url
-          },
-          number: prNumber,
-          repository: {
-            owner: repositoryOwner,
-            name: repositoryName
-          }
-        })
-      })
-      .catch(_ => {
-        setIsError(true)
-        return _
-      })
-  }, [])
-
-  const arrowStyle = {
-    left: `${arrowWidth + arrowMargin}px`
-  }
-
-  const popoverStyle = {
-    left: `${popoverMargin}px`
-  }
-
-  return <a href={props.prUrl} rel='noreferrer' target='_blank' style={popoverStyle} ref={tooltipRef} className="GitHubPopover">
-    <svg style={arrowStyle} className='GitHubPopover__Arrow' width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7 0L0 7H14L7 0Z" fill="#D0D7DE"/>
-      <path d="M7 1.5L1.5 7H12.5L7 1.5Z" fill="white"/>
-    </svg>
-    <div className="GitHubPopover__Content" style={{
-      width: `${popoverWidth}px`
-    }}>
-      {isError
-        ? <PullRequestError />
-        : prData
-          ? <PullRequest pr={prData} />
-          : <PullRequestPlaceholder /> }
-    </div>
-  </a>
+  return (
+    <Tippy
+      animation='scale'
+      theme='light'
+      interactive
+      interactiveBorder={10}
+      maxWidth={300}
+      inertia
+      delay={[0, 250]}
+      onShow={() => {
+        api
+          .PullRequest(
+            new GitHubRepository(repositoryName, repositoryOwner),
+            prNumber
+          )
+          .then(data => {
+            setIsError(false)
+            return setPrData(data)
+          })
+          .catch(_ => setIsError(true))
+      }}
+      content={
+        <a
+          href={props.prUrl}
+          rel='noreferrer'
+          target='_blank'
+          className='GitHubPopover'>
+          {isError
+            ? (
+            <PullRequestError />
+              )
+            : prData
+              ? (
+            <PullRequest pr={prData} />
+                )
+              : (
+            <PullRequestPlaceholder />
+                )}
+        </a>
+      }>
+      {props.children}
+    </Tippy>
+  )
 }
 
 export default GitHubPopover

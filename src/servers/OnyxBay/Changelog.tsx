@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import raw from 'rehype-raw'
 import { COLOR_BINDINGS, ICON_BINDINGS, LINKS } from '.'
@@ -87,17 +87,13 @@ interface PrLinkProps {
 
 const PrLink = (props: PrLinkProps) => {
   const linkRef = useRef<HTMLAnchorElement>(null)
-  const [showTooltip, setShowTooltip] = useState(false)
   const url = `https://github.com/ChaoticOnyx/OnyxBay/pull/${props.pr}`
 
   return <sup
-      onMouseEnter={() => setShowTooltip(true)}
-      onMouseLeave={() => setShowTooltip(false)}
       className='PR'>
-    <a ref={linkRef} rel='noreferrer' target='_blank' className='PR__link' href={url}>#{props.pr}</a>
-    {showTooltip
-      ? <GitHubPopover target={linkRef} prUrl={url} />
-      : null}
+    <GitHubPopover prUrl={url}>
+      <a ref={linkRef} rel='noreferrer' target='_blank' className='PR__link' href={url}>#{props.pr}</a>
+    </GitHubPopover>
   </sup>
 }
 

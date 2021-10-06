@@ -6,12 +6,14 @@
   "type": "module",
   "sideEffects": false,
   "dependencies": {
+    "@tippyjs/react": "^4.2.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^7.0.0",
     "react-refresh": "^0.10.0",
     "react-router-dom": "^5.2.0",
-    "rehype-raw": "^6.1.0"
+    "rehype-raw": "^6.1.0",
+    "tippy.js": "^6.3.2"
   },
   "scripts": {
     "dev": "vite",

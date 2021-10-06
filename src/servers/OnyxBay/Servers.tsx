@@ -11,14 +11,21 @@ const OnyxBayChangelog = (props: { server: GameServer }): ReactElement => {
   const { cdn } = useContext(AppContext)
 
   useEffect(() => {
-    loadChangelog(cdn, props.server,
+    loadChangelog(
+      cdn,
+      props.server,
       _ => setError('Проблемы с подключением ⚠️'),
-      data => setChangelog(
-        data as ChangelogEntry[]
-      ))
+      data => setChangelog(data as ChangelogEntry[])
+    )
   }, [])
 
-  return <OnyxBayChangelogLayout serverName={props.server.name} changelog={changelog} error={error} />
+  return (
+    <OnyxBayChangelogLayout
+      serverName={props.server.name}
+      changelog={changelog}
+      error={error}
+    />
+  )
 }
 
 /**

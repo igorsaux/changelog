@@ -1,4 +1,4 @@
-import { GitHubPullRequest } from './GitHubPullRequest.js'
+import { GitHubPullRequest } from './GitHubPullRequest'
 import { GitHubRepository } from './GitHubRepository'
 
 export abstract class GitHubApi {
