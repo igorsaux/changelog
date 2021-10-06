@@ -83,6 +83,7 @@ function GitHubPopover (props: GitHubPopoverProps) {
       maxWidth={300}
       inertia
       delay={[0, 250]}
+      touch={false}
       onShow={() => {
         api
           .PullRequest(
