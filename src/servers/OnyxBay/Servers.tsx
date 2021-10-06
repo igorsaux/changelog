@@ -26,7 +26,12 @@ const OnyxBayChangelog = (props: { server: GameServer }): ReactElement => {
  */
 export class ChaoticOnyx extends GameServer {
   constructor () {
-    super('Chaotic Onyx', new Repository.ChaoticOnyx(), '/html/changelogs/.all_changelog.json')
+    super(
+      'Chaotic Onyx',
+      new Repository.ChaoticOnyx(),
+      '/html/changelogs/.all_changelog.json',
+      'release/chaotic'
+    )
   }
 
   public override Changelog (): () => ReactElement {
@@ -39,7 +44,12 @@ export class ChaoticOnyx extends GameServer {
  */
 export class Eos extends GameServer {
   constructor () {
-    super('EOS', new Repository.Eos(), '/html/changelogs/.all_changelog.json')
+    super(
+      'EOS',
+      new Repository.Eos(),
+      '/html/changelogs/.all_changelog.json',
+      'release/eos'
+    )
   }
 
   public override Changelog (): () => ReactElement {

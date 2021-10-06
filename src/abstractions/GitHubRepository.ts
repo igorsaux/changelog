@@ -1,7 +1,7 @@
 /**
  * Класс представляющий репозитории GitHub.
  */
-export abstract class GitHubRepository {
+export class GitHubRepository {
   /**
    * Название репозитория.
    */
@@ -12,15 +12,9 @@ export abstract class GitHubRepository {
    */
   public readonly owner: string
 
-  /**
-   * Ветка с чейнджлогом.
-   */
-  public readonly branch: string
-
-  constructor (name: string, owner: string, branch: string) {
+  constructor (name: string, owner: string) {
     this.name = name
     this.owner = owner
-    this.branch = branch
   }
 
   /**

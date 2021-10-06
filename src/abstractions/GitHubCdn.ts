@@ -9,7 +9,7 @@ export abstract class GitHubCDN {
    */
   public cdn: string
 
-  constructor (cdn: string) {
+  protected constructor (cdn: string) {
     this.cdn = cdn
   }
 
@@ -24,9 +24,14 @@ export abstract class GitHubCDN {
    * Получение данных по указанному пути для указанного репозитория в формате JSON.
    * @param repository Репозиторий из которого нужно получить данные.
    * @param filePath Путь до данных (без / в конце).
+   * @param branch Ветка репозитория.
    */
-  public async FetchJsonAsync (repository: GitHubRepository, filePath: string): Promise<unknown> {
-    const response = await this.Fetch(this.Join(repository, filePath))
+  public async FetchJsonAsync (
+    repository: GitHubRepository,
+    filePath: string,
+    branch: string
+  ): Promise<unknown> {
+    const response = await this.Fetch(this.Join(repository, filePath, branch))
     return await response.json()
   }
 
@@ -34,9 +39,14 @@ export abstract class GitHubCDN {
    * Объединяет информацию о репозитории и путь до файла в один путь (без / в конце).
    * @param repository Репозиторий к которому нужно привязать путь.
    * @param filePath Путь до данных.
+   * @param branch Ветка репозитория.
    * @example join({ name: 'OnyxBay', owner: 'ChaoticOnyx' }, '/html/changelog.html') => '/ChaoticOnyx/OnyxBay/html/changelog.html'
    */
-  public Join (repository: GitHubRepository, filePath: string): string {
-    return `${repository.owner}/${repository.name}/${repository.branch}${filePath}`
+  public Join (
+    repository: GitHubRepository,
+    filePath: string,
+    branch: string
+  ): string {
+    return `${repository.owner}/${repository.name}/${branch}${filePath}`
   }
 }

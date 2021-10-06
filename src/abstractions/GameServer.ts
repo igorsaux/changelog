@@ -22,10 +22,16 @@ export abstract class GameServer {
    */
   public readonly name: string
 
-  constructor (name: string, repository: GitHubRepository, changelogFilePath: string) {
+  /**
+   * Ветка где находится чейнджлог.
+   */
+  private readonly branch: string
+
+  protected constructor (name: string, repository: GitHubRepository, changelogFilePath: string, branch: string) {
     this.name = name
     this.repository = repository
     this.changelogFilePath = changelogFilePath
+    this.branch = branch
   }
 
   /**
@@ -34,7 +40,7 @@ export abstract class GameServer {
    * @returns Чейнджлог в формате JSON.
    */
   public async LoadChangelogAsync (cdn: GitHubCDN) {
-    return await cdn.FetchJsonAsync(this.repository, this.changelogFilePath)
+    return await cdn.FetchJsonAsync(this.repository, this.changelogFilePath, encodeURIComponent(this.branch))
   }
 
   /**
