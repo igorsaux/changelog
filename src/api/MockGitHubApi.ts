@@ -6,7 +6,7 @@ export class MockGitHubApi implements GitHubApi {
   public PullRequest (
     repository: GitHubRepository,
     pullRequestNumber: number | string
-  ): Promise<GitHubPullRequest | undefined> {
+  ): Promise<GitHubPullRequest> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve({

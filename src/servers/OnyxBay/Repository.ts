@@ -5,12 +5,12 @@ import { GitHubRepository } from '../../abstractions/GitHubRepository'
  */
 export class ChaoticOnyx extends GitHubRepository {
   constructor () {
-    super('OnyxBay', 'ChaoticOnyx', 'release%2Fchaotic')
+    super('OnyxBay', 'ChaoticOnyx')
   }
 }
 
 export class Eos extends GitHubRepository {
   constructor () {
-    super('OnyxBay', 'ChaoticOnyx', 'release%2Feos')
+    super('OnyxBay', 'ChaoticOnyx')
   }
 }
