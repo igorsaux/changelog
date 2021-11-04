@@ -4,42 +4,10 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: Radiance, sans-serif;
+  font-family: sans-serif;
   scroll-behavior: smooth;
 }
 
 * {
   box-sizing: border-box;
-}
-
-@font-face {
-  font-family: "Radiance";
-  src: url("https://steamcdn-a.akamaihd.net/apps/underlords/fonts/Radiance-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Radiance";
-  src: url("https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Radiance";
-  src: url("https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-black.woff") format("woff");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Radiance";
-  src: url("https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-semibold.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
 }
