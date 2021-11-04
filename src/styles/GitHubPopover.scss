@@ -1,20 +1,21 @@
 @mixin skeleton {
   background-size: 800px 100px;
   background: linear-gradient(to right, #eeeeee 10%, #dadada 50%, #eeeeee 100%);
-  animation: skeleton-gradient 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+  animation: skeleton-gradient 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .tippy-box[data-theme~='light'] {
   box-shadow: 0 0 15px #0000009c;
   background-color: white;
-  border: 1px solid #D0D7DE;
+  border: 1px solid #d0d7de;
 }
 
 .tippy-box[data-theme~='light'][data-placement^='top'] > .tippy-arrow::before {
   border-top-color: white;
 }
 
-.tippy-box[data-theme~='light'][data-placement^='bottom'] > .tippy-arrow::before {
+.tippy-box[data-theme~='light'][data-placement^='bottom']
+  > .tippy-arrow::before {
   border-bottom-color: white;
 }
 
@@ -33,7 +34,7 @@
   &--Error {
     font-size: 1.5em;
     align-content: center;
-    color: #2F363D;
+    color: #2f363d;
   }
 
   .Repository {
@@ -60,12 +61,12 @@
 
     .Number {
       height: 15px;
-      color: #959DA5;
+      color: #959da5;
     }
-  
+
     .Title {
       height: 15px;
-      color: #2F363D;
+      color: #2f363d;
     }
   }
 

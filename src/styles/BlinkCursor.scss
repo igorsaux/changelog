@@ -4,11 +4,11 @@
   font-family: Consolas, monospace;
 
   &:before {
-    content: "";
+    content: '';
   }
 
   &:after {
-    content: "_";
+    content: '_';
     color: white;
 
     animation: blink 1s infinite;

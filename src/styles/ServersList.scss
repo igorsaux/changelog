@@ -7,7 +7,7 @@
 
   height: 100%;
   color: white;
-  background-color: #22272E;
+  background-color: #22272e;
 
   a {
     text-decoration: none;
@@ -30,7 +30,7 @@
     padding: 0;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    
+
     &:before {
       content: '> ';
     }
@@ -42,7 +42,7 @@
         color: #14d0ff;
         text-decoration: underline;
       }
-  
+
       &:focus {
         color: #dda2ff;
       }
