@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, RefObject, useMemo, useState } from 'react'
+import React, { RefObject } from 'react'
 import useObserver from '../hooks/useObserver'
 import '../styles/GoUp.scss'
 

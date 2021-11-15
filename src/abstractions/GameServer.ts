@@ -1,4 +1,3 @@
-import { ReactNode } from 'react'
 import { ReactElement } from 'react-markdown/lib/react-markdown'
 import { GitHubCDN } from './GitHubCdn'
 import { GitHubRepository } from './GitHubRepository'
@@ -27,7 +26,12 @@ export abstract class GameServer {
    */
   private readonly branch: string
 
-  protected constructor (name: string, repository: GitHubRepository, changelogFilePath: string, branch: string) {
+  protected constructor (
+    name: string,
+    repository: GitHubRepository,
+    changelogFilePath: string,
+    branch: string
+  ) {
     this.name = name
     this.repository = repository
     this.changelogFilePath = changelogFilePath
@@ -40,7 +44,11 @@ export abstract class GameServer {
    * @returns Чейнджлог в формате JSON.
    */
   public async LoadChangelogAsync (cdn: GitHubCDN) {
-    return await cdn.FetchJsonAsync(this.repository, this.changelogFilePath, encodeURIComponent(this.branch))
+    return await cdn.FetchJsonAsync(
+      this.repository,
+      this.changelogFilePath,
+      encodeURIComponent(this.branch)
+    )
   }
 
   /**
