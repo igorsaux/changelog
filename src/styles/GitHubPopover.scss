@@ -19,90 +19,15 @@
   border-bottom-color: white;
 }
 
-.GitHubPopover {
-  text-decoration: none;
+.tippy-content {
+  padding: 0;
 }
 
-.PullRequestCard {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  align-items: flex-start;
-  justify-content: center;
+.GitHubPopover {
+  text-decoration: none;
 
-  &--Error {
-    font-size: 1.5em;
-    align-content: center;
-    color: #2f363d;
-  }
-
-  .Repository {
-    font-size: 0.9em;
-    color: #586069;
-
-    &--Placeholder {
-      width: 10ch;
-      height: 2ch;
-      @include skeleton;
-    }
-  }
-
-  .Naming {
-    font-size: 1.3em;
-    font-weight: bold;
-
-    &--Placeholder {
-      margin-top: 5px;
-      width: 25ch;
-      height: 5ch;
-      @include skeleton;
-    }
-
-    .Number {
-      height: 15px;
-      color: #959da5;
-    }
-
-    .Title {
-      height: 15px;
-      color: #2f363d;
-    }
-  }
-
-  .Misc {
-    &--Placeholder {
-      margin-top: 5px;
-      width: 25ch;
-      height: 5ch;
-      @include skeleton;
-    }
-
-    .Avatar {
-      max-width: 18px;
-      max-height: 18px;
-      vertical-align: middle;
-      border-radius: 100%;
-      margin-right: 5px;
-    }
-
-    .Author {
-      color: black;
-      font-weight: bold;
-    }
-
-    .CloseDate {
-      color: #959da5;
-    }
-  }
-
-  @keyframes skeleton-gradient {
-    from {
-      background-position: -100px;
-    }
-
-    to {
-      background-position: 390px;
-    }
+  img {
+    height: 100%;
+    width: 100%;
   }
 }
