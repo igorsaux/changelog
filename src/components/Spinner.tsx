@@ -1,4 +1,3 @@
-import React from 'react'
 import '../styles/Spinner.scss'
 
 /**
@@ -8,15 +7,17 @@ export interface SpinnerProps {
   /**
    * Сообщение.
    */
-  text: string;
+  text: string
 }
 
 /**
  * Спиннер.
  */
 export const Spinner = (props: SpinnerProps) => {
-  return <div className='Spinner'>
-    <i className='Spinner__icon fas fa-spinner'>
-    </i><span className='Spinner__text'>{props.text}</span>
-  </div>
+  return (
+    <div className='Spinner'>
+      <i className='Spinner__icon fas fa-spinner'></i>
+      <span className='Spinner__text'>{props.text}</span>
+    </div>
+  )
 }

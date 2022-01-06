@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react'
+import { RefObject } from 'preact'
 import useObserver from '../hooks/useObserver'
 import '../styles/GoUp.scss'
 
@@ -12,10 +12,12 @@ interface GoUpProps {
 export const GoUp = (props: GoUpProps) => {
   const isIntersecting = useObserver(props.topElement)
 
-  return <button
+  return (
+    <button
       onClick={() => window.scrollTo(0, 0)}
       className={`GoUp ${isIntersecting ? 'GoUp--hide' : ''}`}
     >
-    <i className='fas fa-arrow-up' />
-  </button>
+      <i className='fas fa-arrow-up' />
+    </button>
+  )
 }

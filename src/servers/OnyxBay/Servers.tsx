@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
 import * as Repository from './Repository'
 import { GameServer } from '../../abstractions/GameServer'
 import { ChangelogEntry, loadChangelog, OnyxBayChangelogLayout } from '.'
 import { AppContext } from '../../components/App'
-import { ReactElement } from 'react-markdown/lib/react-markdown'
+import { useContext, useEffect, useState } from 'preact/hooks'
+import { ComponentChild } from 'preact'
 
-const OnyxBayChangelog = (props: { server: GameServer }): ReactElement => {
+const OnyxBayChangelog = (props: { server: GameServer }): ComponentChild => {
   const [error, setError] = useState<string | undefined>(undefined)
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([])
   const { cdn } = useContext(AppContext)
@@ -32,7 +32,7 @@ const OnyxBayChangelog = (props: { server: GameServer }): ReactElement => {
  * Сервер Chaotic Onyx.
  */
 export class ChaoticOnyx extends GameServer {
-  constructor () {
+  constructor() {
     super(
       'Chaotic Onyx',
       new Repository.ChaoticOnyx(),
@@ -41,7 +41,7 @@ export class ChaoticOnyx extends GameServer {
     )
   }
 
-  public override Changelog (): () => ReactElement {
+  public override Changelog(): () => ComponentChild {
     return () => OnyxBayChangelog({ server: this })
   }
 }
@@ -50,7 +50,7 @@ export class ChaoticOnyx extends GameServer {
  * Сервер EOS.
  */
 export class Eos extends GameServer {
-  constructor () {
+  constructor() {
     super(
       'EOS',
       new Repository.Eos(),
@@ -59,7 +59,7 @@ export class Eos extends GameServer {
     )
   }
 
-  public override Changelog (): () => ReactElement {
+  public override Changelog(): () => ComponentChild {
     return () => OnyxBayChangelog({ server: this })
   }
 }

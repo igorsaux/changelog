@@ -1,19 +1,19 @@
 import Tippy from '@tippyjs/react'
-import React, { createRef } from 'react'
 import 'tippy.js/dist/tippy.css'
 import 'tippy.js/animations/scale.css'
 import 'tippy.js/dist/border.css'
 import '../styles/GitHubPopover.scss'
+import { ComponentChild, createRef } from 'preact'
 
 /**
  * Пропсы для {@link GitHubPopoverProps}
  */
 type GitHubPopoverProps = {
-  children: React.ReactElement
+  children: ComponentChild
   prUrl: string
 }
 
-function GitHubPopover (props: GitHubPopoverProps) {
+function GitHubPopover(props: GitHubPopoverProps) {
   const splittedUrl = props.prUrl.split('/')
   const repositoryOwner = splittedUrl[3]
   const repositoryName = splittedUrl[4]

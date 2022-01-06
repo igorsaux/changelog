@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
-import ReactMarkdown from 'react-markdown'
-import raw from 'rehype-raw'
+import { marked } from 'marked'
+import { createRef, h } from 'preact'
+import { useEffect } from 'preact/hooks'
 import { COLOR_BINDINGS, ICON_BINDINGS, LINKS } from '.'
 import { GameServer } from '../../abstractions/GameServer'
 import { GitHubCDN } from '../../abstractions/GitHubCdn'
@@ -95,7 +95,7 @@ interface PrLinkProps {
 }
 
 const PrLink = (props: PrLinkProps) => {
-  const linkRef = useRef<HTMLAnchorElement>(null)
+  const linkRef = createRef<HTMLAnchorElement>()
   const url = `https://github.com/ChaoticOnyx/OnyxBay/pull/${props.pr}`
 
   return (
@@ -106,7 +106,8 @@ const PrLink = (props: PrLinkProps) => {
           rel='noreferrer'
           target='_blank'
           className='PR__link'
-          href={url}>
+          href={url}
+        >
           #{props.pr}
         </a>
       </GitHubPopover>
@@ -119,15 +120,18 @@ interface ChangeProps {
 }
 
 const Change = (props: ChangeProps) => {
+  const fragmentRef = createRef<HTMLDivElement>()
   const prefix = props.change.prefix.toLowerCase()
   const message = capitalize(props.change.message)
 
+  useEffect(() => {
+    fragmentRef.current!.insertAdjacentHTML('afterend', marked.parse(message))
+  }, [fragmentRef])
+
   return (
     <li className={`Changes__change ${COLOR_BINDINGS[prefix]}`}>
-      <i className={ICON_BINDINGS[prefix]} />
-      <ReactMarkdown rehypePlugins={[raw]} transformLinkUri={null}>
-        {message}
-      </ReactMarkdown>
+      <i ref={fragmentRef} className={ICON_BINDINGS[prefix]} />
+      {/* {h(Fragment, {}, marked.parse(message))} */}
       {props.change.pr ? <PrLink pr={props.change.pr} /> : ''}
     </li>
   )
@@ -190,7 +194,7 @@ const Body = (props: BodyProps) => {
           previousDate = entry.date
         }
 
-        return <Changelog key={index} {...entry} renderDate={drawDate} />
+        return <Changelog {...entry} renderDate={drawDate} />
       })}
     </>
   )
@@ -232,7 +236,7 @@ interface OnyxBayChangelogLayoutProps {
 }
 
 export const OnyxBayChangelogLayout = (props: OnyxBayChangelogLayoutProps) => {
-  const headerRef = useRef<HTMLDivElement>(null)
+  const headerRef = createRef<HTMLDivElement>()
 
   return (
     <ChangelogLayout theme='onyx'>

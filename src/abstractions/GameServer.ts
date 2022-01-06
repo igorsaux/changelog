@@ -1,4 +1,4 @@
-import { ReactElement } from 'react-markdown/lib/react-markdown'
+import { ComponentChild } from 'preact'
 import { GitHubCDN } from './GitHubCdn'
 import { GitHubRepository } from './GitHubRepository'
 
@@ -26,7 +26,7 @@ export abstract class GameServer {
    */
   private readonly branch: string
 
-  protected constructor (
+  protected constructor(
     name: string,
     repository: GitHubRepository,
     changelogFilePath: string,
@@ -43,7 +43,7 @@ export abstract class GameServer {
    * @param cdn Используемый CDN.
    * @returns Чейнджлог в формате JSON.
    */
-  public async LoadChangelogAsync (cdn: GitHubCDN) {
+  public async LoadChangelogAsync(cdn: GitHubCDN) {
     return await cdn.FetchJsonAsync(
       this.repository,
       this.changelogFilePath,
@@ -54,5 +54,5 @@ export abstract class GameServer {
   /**
    * Возвращает компонент для отрисовки чейнджлога.
    */
-  public abstract Changelog (): () => ReactElement
+  public abstract Changelog(): () => ComponentChild
 }

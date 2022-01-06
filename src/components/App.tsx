@@ -1,12 +1,13 @@
-import React from 'react'
-import { Route, Switch } from 'react-router'
+import { createContext } from 'preact'
+import Router, { CustomHistory } from 'preact-router'
 import { GameServer } from '../abstractions/GameServer'
 import { RealGitHubApi } from '../api/RealGitHubApi'
 import { GitHubRaw } from '../cdn/GitHubRaw'
 import { Servers } from '../servers/OnyxBay'
 import { ServersList } from './ServersList'
+import { createHashHistory } from 'history'
 
-export const AppContext = React.createContext({
+export const AppContext = createContext({
   cdn: new GitHubRaw(),
   api: new RealGitHubApi()
 })
@@ -16,36 +17,30 @@ const SERVERS: { [key: string]: GameServer } = {
   eos: new Servers.Eos()
 }
 
-const ServersSelection = () => {
+function ServersSelection() {
   const keys = Object.keys(SERVERS)
 
   return (
     <ServersList>
       {keys.map(id => {
-        return <ServersList.Entry key={id} id={id} server={SERVERS[id]} />
+        return <ServersList.Entry id={id} server={SERVERS[id]} />
       })}
     </ServersList>
   )
 }
 
-export const App = () => {
+function App() {
   const keys = Object.keys(SERVERS)
 
   return (
-    <Switch>
+    <Router history={createHashHistory() as unknown as CustomHistory}>
       {keys.map(id => {
         const ServerComponent = SERVERS[id].Changelog()
 
-        return (
-          <Route key={id} path={`/${id}`}>
-            <ServerComponent />
-          </Route>
-        )
+        return <ServerComponent path={`/${id}`} />
       })}
-      <Route>
-        <ServersSelection />
-      </Route>
-    </Switch>
+      <ServersSelection default />
+    </Router>
   )
 }
 

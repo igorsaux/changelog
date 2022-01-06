@@ -1,11 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import { RefObject } from 'preact'
+import { useEffect, useMemo, useState } from 'preact/hooks'
 
-export default function useObserver (ref: React.RefObject<Element>) {
+export default function useObserver(ref: RefObject<Element>) {
   const [isIntersecting, setIntersecting] = useState(true)
 
-  const observer = useMemo(() => new IntersectionObserver(
-    ([entry]) => setIntersecting(entry.isIntersecting)
-  ), [])
+  const observer = useMemo(
+    () =>
+      new IntersectionObserver(([entry]) =>
+        setIntersecting(entry.isIntersecting)
+      ),
+    []
+  )
 
   useEffect(() => {
     if (!ref.current) {
