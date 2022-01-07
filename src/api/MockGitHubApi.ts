@@ -3,7 +3,7 @@ import { GitHubPullRequest } from '../abstractions/GitHubPullRequest'
 import { GitHubRepository } from '../abstractions/GitHubRepository'
 
 export class MockGitHubApi implements GitHubApi {
-  public PullRequest (
+  public PullRequest(
     repository: GitHubRepository,
     pullRequestNumber: number | string
   ): Promise<GitHubPullRequest> {

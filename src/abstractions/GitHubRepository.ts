@@ -12,7 +12,7 @@ export class GitHubRepository {
    */
   public readonly owner: string
 
-  constructor (name: string, owner: string) {
+  constructor(name: string, owner: string) {
     this.name = name
     this.owner = owner
   }
@@ -20,7 +20,7 @@ export class GitHubRepository {
   /**
    * Получение ссылки на GitHub репозитории.
    */
-  public getUrl () {
+  public getUrl() {
     return `https://github.com/${this.owner}/${this.name}`
   }
 }

@@ -1,26 +1,27 @@
 /**
  * Префиксы изменении.
  */
-export type ChangePrefix = 'bugfix'
-                  | 'tweak'
-                  | 'soundadd'
-                  | 'sounddel'
-                  | 'rscadd'
-                  | 'rscdel'
-                  | 'imageadd'
-                  | 'imagedel'
-                  | 'maptweak'
-                  | 'spellcheck'
-                  | 'experiment'
-                  | 'admin'
-                  | 'balance'
+export type ChangePrefix =
+  | 'bugfix'
+  | 'tweak'
+  | 'soundadd'
+  | 'sounddel'
+  | 'rscadd'
+  | 'rscdel'
+  | 'imageadd'
+  | 'imagedel'
+  | 'maptweak'
+  | 'spellcheck'
+  | 'experiment'
+  | 'admin'
+  | 'balance'
 
 /**
  * Биндинги префикса изменения к Font Awesome иконки.
  */
 // WTF
 // eslint-disable-next-line no-unused-vars
-export const ICON_BINDINGS: {[key in ChangePrefix as string]: string} = {
+export const ICON_BINDINGS: { [key in ChangePrefix as string]: string } = {
   bugfix: 'fas fa-bug',
   tweak: 'fas fa-wrench',
   soundadd: 'fas fa-music',
@@ -37,7 +38,7 @@ export const ICON_BINDINGS: {[key in ChangePrefix as string]: string} = {
 }
 
 // eslint-disable-next-line no-unused-vars
-export const COLOR_BINDINGS: {[key in ChangePrefix as string] : string} = {
+export const COLOR_BINDINGS: { [key in ChangePrefix as string]: string } = {
   bugfix: 'green',
   tweak: 'green',
   soundadd: 'green',

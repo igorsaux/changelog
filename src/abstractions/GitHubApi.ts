@@ -9,6 +9,6 @@ export abstract class GitHubApi {
    */
   public abstract PullRequest(
     repository: GitHubRepository,
-    pullRequestNumber: number | string,
+    pullRequestNumber: number | string
   ): Promise<GitHubPullRequest>
 }

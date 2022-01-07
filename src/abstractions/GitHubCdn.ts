@@ -9,11 +9,11 @@ export abstract class GitHubCDN {
    */
   public cdn: string
 
-  protected constructor (cdn: string) {
+  protected constructor(cdn: string) {
     this.cdn = cdn
   }
 
-  protected async Fetch (url: string): Promise<Response> {
+  protected async Fetch(url: string): Promise<Response> {
     return await fetch(`${this.cdn}/${url}`, {
       method: 'GET',
       mode: 'cors'
@@ -26,7 +26,7 @@ export abstract class GitHubCDN {
    * @param filePath Путь до данных (без / в конце).
    * @param branch Ветка репозитория.
    */
-  public async FetchJsonAsync (
+  public async FetchJsonAsync(
     repository: GitHubRepository,
     filePath: string,
     branch: string
@@ -42,7 +42,7 @@ export abstract class GitHubCDN {
    * @param branch Ветка репозитория.
    * @example join({ name: 'OnyxBay', owner: 'ChaoticOnyx' }, '/html/changelog.html') => '/ChaoticOnyx/OnyxBay/html/changelog.html'
    */
-  public Join (
+  public Join(
     repository: GitHubRepository,
     filePath: string,
     branch: string

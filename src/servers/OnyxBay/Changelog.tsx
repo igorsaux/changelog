@@ -1,5 +1,5 @@
 import { marked } from 'marked'
-import { createRef, h } from 'preact'
+import { createRef } from 'preact'
 import { useEffect } from 'preact/hooks'
 import { COLOR_BINDINGS, ICON_BINDINGS, LINKS } from '.'
 import { GameServer } from '../../abstractions/GameServer'
@@ -131,7 +131,6 @@ const Change = (props: ChangeProps) => {
   return (
     <li className={`Changes__change ${COLOR_BINDINGS[prefix]}`}>
       <i ref={fragmentRef} className={ICON_BINDINGS[prefix]} />
-      {/* {h(Fragment, {}, marked.parse(message))} */}
       {props.change.pr ? <PrLink pr={props.change.pr} /> : ''}
     </li>
   )

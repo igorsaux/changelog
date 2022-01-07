@@ -5,7 +5,7 @@ import { GitHubRepository } from '../abstractions/GitHubRepository'
 export class RealGitHubApi implements GitHubApi {
   private baseUrl = 'https://api.github.com'
 
-  public async PullRequest (
+  public async PullRequest(
     repository: GitHubRepository,
     pullRequestNumber: number | string
   ) {
