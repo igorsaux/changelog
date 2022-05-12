@@ -1,10 +1,15 @@
+@import url('PT-Mono/PT-Mono_Regular.css');
+@import url('Golos-UI/GOLOS-UI_Regular.css');
+@import url('Golos-UI/GOLOS-UI_Medium.css');
+@import url('Golos-UI/GOLOS-UI_Bold.css');
+
 html,
 body,
 #root {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'GolosUIWebRegular';
   scroll-behavior: smooth;
 }
 

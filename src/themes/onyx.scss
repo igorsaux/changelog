@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
 .theme-onyx {
   &.ChangelogLayout {
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'GolosUIWebRegular', sans-serif;
     color: white;
     background-color: #22272e;
     gap: 1rem;
@@ -111,6 +109,8 @@
       overflow-wrap: anywhere;
 
       code {
+        font-family: 'PTMonoWebRegular';
+        font-size: 0.9em;
         padding-left: 0.2rem;
         padding-right: 0.2rem;
         border-radius: 0.2rem;
